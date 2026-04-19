@@ -1,0 +1,6 @@
+[submodule "mgpusim"]
+	path = mgpusim
+	url = https://github.com/MJS0924/mgpusim.git
+[submodule "akita"]
+	path = akita
+	url = https://github.com/sarchlab/akita.git

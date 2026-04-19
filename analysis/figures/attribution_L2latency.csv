@@ -1,0 +1,9 @@
+scheme,workload,L2Cache_req_avg_latency_ns,speedup_vs_cd
+CD,im2col,346.14,1.0
+REC,im2col,215.37,1.0113195849599061
+HMG,im2col,343.11,0.9985033464500724
+superdirectory,im2col,340.83,0.9900555913121484
+CD,matrixmultiplication,728.63,1.0
+REC,matrixmultiplication,690.16,1.1755667422243514
+HMG,matrixmultiplication,739.31,1.1079472764951337
+superdirectory,matrixmultiplication,998.89,0.8488592935029082

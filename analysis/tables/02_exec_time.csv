@@ -1,0 +1,17 @@
+scheme,workload,driver_kernel_time_s,cp_max_kernel_time_s
+CD,bfs,,
+CD,im2col,0.000296885,0.00029629600000000004
+CD,matrixmultiplication,0.000986411,0.00098582
+CD,pagerank,,
+REC,bfs,,
+REC,im2col,0.00029356200000000003,0.000292971
+REC,matrixmultiplication,0.000839094,0.000838496
+REC,pagerank,0.001618165,0.001600712
+HMG,bfs,,
+HMG,im2col,0.00029732999999999995,0.000296741
+HMG,matrixmultiplication,0.000890305,0.000889713
+HMG,pagerank,0.001454048,0.001451683
+superdirectory,bfs,0.000987157,0.000974791999999998
+superdirectory,im2col,0.000299867,0.00029927700000000003
+superdirectory,matrixmultiplication,0.001162043,0.001157598
+superdirectory,pagerank,0.001565552,0.001562659

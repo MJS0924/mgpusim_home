@@ -1,0 +1,17 @@
+scheme,workload,status,data_file,notes
+CD,bfs,MISSING,MISSING,
+CD,im2col,EXTRACTED,/root/mgpusim_home/results/CD/data/im2col_CD_0.txt,"extracted from SQLite (12126 lines); lines=12126, has_kernel_time=True, violations=0"
+CD,matrixmultiplication,EXTRACTED,/root/mgpusim_home/results/CD/data/matrixmultiplication_CD_0.txt,"extracted from SQLite (13043 lines); lines=13043, has_kernel_time=True, violations=0"
+CD,pagerank,MISSING,MISSING,
+REC,bfs,MISSING,MISSING,
+REC,im2col,EXTRACTED,/root/mgpusim_home/results/REC/data/im2col_REC.txt,"extracted from SQLite (12092 lines); lines=12092, has_kernel_time=True, violations=0"
+REC,matrixmultiplication,OK,/root/mgpusim_home/results/REC/data/matrixmultiplication_REC.txt,"lines=12827, has_kernel_time=True, violations=0"
+REC,pagerank,OK,/root/mgpusim_home/results/REC/data/pagerank_REC.txt,"lines=13047, has_kernel_time=True, violations=0"
+HMG,bfs,MISSING,MISSING,
+HMG,im2col,EXTRACTED,/root/mgpusim_home/results/HMG/data/im2col_HMG.txt,"extracted from SQLite (12111 lines); lines=12111, has_kernel_time=True, violations=0"
+HMG,matrixmultiplication,OK,/root/mgpusim_home/results/HMG/data/matrixmultiplication_HMG.txt,"lines=12827, has_kernel_time=True, violations=0"
+HMG,pagerank,OK,/root/mgpusim_home/results/HMG/data/pagerank_HMG.txt,"lines=12955, has_kernel_time=True, violations=0"
+superdirectory,bfs,OK,/root/mgpusim_home/results/superdirectory/data/bfs_superdirectory.txt,"lines=12282, has_kernel_time=True, violations=0"
+superdirectory,im2col,EXTRACTED,/root/mgpusim_home/results/superdirectory/data/im2col_superdirectory.txt,"extracted from SQLite (12212 lines); lines=12212, has_kernel_time=True, violations=0"
+superdirectory,matrixmultiplication,OK,/root/mgpusim_home/results/superdirectory/data/matrixmultiplication_superdirectory.txt,"lines=12937, has_kernel_time=True, violations=0"
+superdirectory,pagerank,OK,/root/mgpusim_home/results/superdirectory/data/pagerank_superdirectory.txt,"lines=13160, has_kernel_time=True, violations=0"

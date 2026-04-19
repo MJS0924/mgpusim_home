@@ -1,0 +1,6 @@
+results/
+*.sqlite3
+*.db
+__pycache__/
+*.pyc
+*.log

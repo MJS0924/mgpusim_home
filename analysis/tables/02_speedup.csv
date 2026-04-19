@@ -1,0 +1,20 @@
+scheme,workload,speedup_vs_cd
+CD,bfs,MISSING_BASELINE
+REC,bfs,MISSING_BASELINE
+HMG,bfs,MISSING_BASELINE
+superdirectory,bfs,MISSING_BASELINE
+CD,im2col,1.0
+REC,im2col,1.0113195849599061
+HMG,im2col,0.9985033464500724
+superdirectory,im2col,0.9900555913121484
+CD,matrixmultiplication,1.0
+REC,matrixmultiplication,1.1755667422243514
+HMG,matrixmultiplication,1.1079472764951337
+superdirectory,matrixmultiplication,0.8488592935029082
+CD,pagerank,MISSING_BASELINE
+REC,pagerank,MISSING_BASELINE
+HMG,pagerank,MISSING_BASELINE
+superdirectory,pagerank,MISSING_BASELINE
+superdirectory,GEOMEAN (2 WLs),0.916743088204015
+REC,GEOMEAN (2 WLs),1.0903548366651106
+HMG,GEOMEAN (2 WLs),1.0518027682368185

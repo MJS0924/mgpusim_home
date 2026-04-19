@@ -1,0 +1,9 @@
+scheme,workload,speedup
+CD,im2col,1.0
+REC,im2col,1.0113195849599061
+HMG,im2col,0.9985033464500724
+superdirectory,im2col,0.9900555913121484
+CD,matrixmultiplication,1.0
+REC,matrixmultiplication,1.1755667422243514
+HMG,matrixmultiplication,1.1079472764951337
+superdirectory,matrixmultiplication,0.8488592935029082
