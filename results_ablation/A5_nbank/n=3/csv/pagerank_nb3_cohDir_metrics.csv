@@ -1,0 +1,239 @@
+Location,What,Value,Unit
+GPU[2].SuperDir,UpdateEntry,164979.0,count
+GPU[2].SuperDir,InvalidateByEviction,0.0,count
+GPU[2].SuperDir,InvalidateByWrite,2082.0,count
+GPU[2].SuperDir,InvalidateByPromotion,2.0,count
+GPU[2].SuperDir,ToLocalData,1945662.0,count
+GPU[2].SuperDir,ToRemoteData,1242794.0,count
+GPU[2].SuperDir,FromLocal,2836857.0,count
+GPU[2].SuperDir,FromRemote,351599.0,count
+GPU[3].SuperDir,UpdateEntry,182331.0,count
+GPU[3].SuperDir,InvalidateByEviction,1.0,count
+GPU[3].SuperDir,InvalidateByWrite,2845.0,count
+GPU[3].SuperDir,InvalidateByPromotion,3.0,count
+GPU[3].SuperDir,InvalidateByDemotion,87.0,count
+GPU[3].SuperDir,ToLocalData,1333152.0,count
+GPU[3].SuperDir,ToRemoteData,1920850.0,count
+GPU[3].SuperDir,FromLocal,2861772.0,count
+GPU[3].SuperDir,FromRemote,392230.0,count
+GPU[4].SuperDir,UpdateEntry,139566.0,count
+GPU[4].SuperDir,InvalidateByEviction,0.0,count
+GPU[4].SuperDir,InvalidateByWrite,0.0,count
+GPU[4].SuperDir,ToLocalData,440711.0,count
+GPU[4].SuperDir,ToRemoteData,2730282.0,count
+GPU[4].SuperDir,FromLocal,2889759.0,count
+GPU[4].SuperDir,FromRemote,281234.0,count
+GPU[5].SuperDir,UpdateEntry,209273.0,count
+GPU[5].SuperDir,InvalidateByEviction,1.0,count
+GPU[5].SuperDir,InvalidateByWrite,0.0,count
+GPU[5].SuperDir,ToLocalData,486074.0,count
+GPU[5].SuperDir,ToRemoteData,2628920.0,count
+GPU[5].SuperDir,FromLocal,2782261.0,count
+GPU[5].SuperDir,FromRemote,332733.0,count
+GPU[2].SuperDir,UpdateEntry - 0,181.0,count
+GPU[2].SuperDir,InvalidateByEviction - 0,0.0,count
+GPU[2].SuperDir,InvalidateByWrite - 0,160.0,count
+GPU[2].SuperDir,InvalidateByPromotion - 0,2.0,count
+GPU[2].SuperDir,InvalidateByDemotion - 0,0.0,count
+GPU[2].SuperDir,UpdateEntry - 1,395.0,count
+GPU[2].SuperDir,InvalidateByEviction - 1,0.0,count
+GPU[2].SuperDir,InvalidateByWrite - 1,480.0,count
+GPU[2].SuperDir,InvalidateByPromotion - 1,0.0,count
+GPU[2].SuperDir,InvalidateByDemotion - 1,0.0,count
+GPU[2].SuperDir,UpdateEntry - 2,164403.0,count
+GPU[2].SuperDir,InvalidateByEviction - 2,0.0,count
+GPU[2].SuperDir,InvalidateByWrite - 2,1442.0,count
+GPU[2].SuperDir,InvalidateByPromotion - 2,0.0,count
+GPU[2].SuperDir,InvalidateByDemotion - 2,0.0,count
+GPU[3].SuperDir,UpdateEntry - 0,161.0,count
+GPU[3].SuperDir,InvalidateByEviction - 0,0.0,count
+GPU[3].SuperDir,InvalidateByWrite - 0,248.0,count
+GPU[3].SuperDir,InvalidateByPromotion - 0,2.0,count
+GPU[3].SuperDir,InvalidateByDemotion - 0,0.0,count
+GPU[3].SuperDir,UpdateEntry - 1,167.0,count
+GPU[3].SuperDir,InvalidateByEviction - 1,0.0,count
+GPU[3].SuperDir,InvalidateByWrite - 1,652.0,count
+GPU[3].SuperDir,InvalidateByPromotion - 1,1.0,count
+GPU[3].SuperDir,InvalidateByDemotion - 1,57.0,count
+GPU[3].SuperDir,UpdateEntry - 2,182003.0,count
+GPU[3].SuperDir,InvalidateByEviction - 2,1.0,count
+GPU[3].SuperDir,InvalidateByWrite - 2,1945.0,count
+GPU[3].SuperDir,InvalidateByPromotion - 2,0.0,count
+GPU[3].SuperDir,InvalidateByDemotion - 2,30.0,count
+GPU[4].SuperDir,UpdateEntry - 1,2.0,count
+GPU[4].SuperDir,InvalidateByEviction - 1,0.0,count
+GPU[4].SuperDir,InvalidateByWrite - 1,0.0,count
+GPU[4].SuperDir,InvalidateByPromotion - 1,0.0,count
+GPU[4].SuperDir,InvalidateByDemotion - 1,0.0,count
+GPU[4].SuperDir,UpdateEntry - 2,139564.0,count
+GPU[4].SuperDir,InvalidateByEviction - 2,0.0,count
+GPU[4].SuperDir,InvalidateByWrite - 2,0.0,count
+GPU[4].SuperDir,InvalidateByPromotion - 2,0.0,count
+GPU[4].SuperDir,InvalidateByDemotion - 2,0.0,count
+GPU[5].SuperDir,UpdateEntry - 2,209273.0,count
+GPU[5].SuperDir,InvalidateByEviction - 2,1.0,count
+GPU[5].SuperDir,InvalidateByWrite - 2,0.0,count
+GPU[5].SuperDir,InvalidateByPromotion - 2,0.0,count
+GPU[5].SuperDir,InvalidateByDemotion - 2,0.0,count
+GPU[2].SuperDir,AvgEvictEntryUtilization,0.25465116279069766,ratio
+GPU[2].SuperDir,EvictCount,2580.0,count
+GPU[3].SuperDir,AvgEvictEntryUtilization,0.27368136249715197,ratio
+GPU[3].SuperDir,EvictCount,17556.0,count
+GPU[4].SuperDir,AvgEvictEntryUtilization,0.25396328744263663,ratio
+GPU[4].SuperDir,EvictCount,2397.0,count
+GPU[5].SuperDir,AvgEvictEntryUtilization,0.26687027836384675,ratio
+GPU[5].SuperDir,EvictCount,29386.0,count
+GPU[2].SuperDir,BankChecked - 1,19845.0,count
+GPU[2].SuperDir,BankChecked - 2,15526.0,count
+GPU[2].SuperDir,BankChecked - 3,277402.0,count
+GPU[2].SuperDir,BankChecked - 4,7.0,count
+GPU[3].SuperDir,BankChecked - 1,23060.0,count
+GPU[3].SuperDir,BankChecked - 2,38193.0,count
+GPU[3].SuperDir,BankChecked - 3,294356.0,count
+GPU[3].SuperDir,BankChecked - 4,41.0,count
+GPU[3].SuperDir,BankChecked - 5,1.0,count
+GPU[4].SuperDir,BankChecked - 1,4984.0,count
+GPU[4].SuperDir,BankChecked - 2,7471.0,count
+GPU[4].SuperDir,BankChecked - 3,217596.0,count
+GPU[4].SuperDir,BankChecked - 4,2.0,count
+GPU[5].SuperDir,BankChecked - 1,7605.0,count
+GPU[5].SuperDir,BankChecked - 2,36951.0,count
+GPU[5].SuperDir,BankChecked - 3,241277.0,count
+GPU[5].SuperDir,BankChecked - 4,20.0,count
+GPU[5].SuperDir,BankChecked - 5,1.0,count
+GPU[2].SuperDir,GetBankCount - 1,321.0,count
+GPU[2].SuperDir,GetBankCount - 2,4695.0,count
+GPU[2].SuperDir,GetBankCount - 3,360535.0,count
+GPU[3].SuperDir,GetBankCount - 1,1062.0,count
+GPU[3].SuperDir,GetBankCount - 2,10684.0,count
+GPU[3].SuperDir,GetBankCount - 3,408388.0,count
+GPU[4].SuperDir,GetBankCount - 1,193.0,count
+GPU[4].SuperDir,GetBankCount - 2,3506.0,count
+GPU[4].SuperDir,GetBankCount - 3,277535.0,count
+GPU[5].SuperDir,GetBankCount - 1,384.0,count
+GPU[5].SuperDir,GetBankCount - 2,9671.0,count
+GPU[5].SuperDir,GetBankCount - 3,322678.0,count
+GPU[2].RDMA,Read Req 12,696040.0,count
+GPU[2].RDMA,Read Rsp 68,696040.0,count
+GPU[2].RDMA,Write Req 76,61362.0,count
+GPU[2].RDMA,Write Rsp 4,61362.0,count
+GPU[2].RDMA,Inv Req 12,3070.0,count
+GPU[2].RDMA,Inv Rsp 4,3070.0,count
+GPU[3].RDMA,Read Req 12,629405.0,count
+GPU[3].RDMA,Read Rsp 68,629405.0,count
+GPU[3].RDMA,Write Req 76,87043.0,count
+GPU[3].RDMA,Write Rsp 4,87043.0,count
+GPU[3].RDMA,Inv Req 12,3758.0,count
+GPU[3].RDMA,Inv Rsp 4,3758.0,count
+GPU[4].RDMA,Read Req 12,558657.0,count
+GPU[4].RDMA,Read Rsp 68,558657.0,count
+GPU[4].RDMA,Write Req 76,36238.0,count
+GPU[4].RDMA,Write Rsp 4,36238.0,count
+GPU[4].RDMA,Inv Req 12,1618.0,count
+GPU[4].RDMA,Inv Rsp 4,1618.0,count
+GPU[5].RDMA,Read Req 12,610652.0,count
+GPU[5].RDMA,Read Rsp 68,610652.0,count
+GPU[5].RDMA,Write Req 76,36195.0,count
+GPU[5].RDMA,Write Rsp 4,36195.0,count
+GPU[5].RDMA,Inv Req 12,1596.0,count
+GPU[5].RDMA,Inv Rsp 4,1596.0,count
+GPU[1].SuperDir,avg_evict_utilization,0.0,ratio
+GPU[1].SuperDir,evict_count,0.0,count
+GPU[2].SuperDir,avg_evict_utilization,0.25465116279069766,ratio
+GPU[2].SuperDir,evict_count,2580.0,count
+GPU[3].SuperDir,avg_evict_utilization,0.27368136249715197,ratio
+GPU[3].SuperDir,evict_count,17556.0,count
+GPU[4].SuperDir,avg_evict_utilization,0.25396328744263663,ratio
+GPU[4].SuperDir,evict_count,2397.0,count
+GPU[5].SuperDir,avg_evict_utilization,0.26687027836384675,ratio
+GPU[5].SuperDir,evict_count,29386.0,count
+GPU[1].SuperDir,do_write_miss,0.0,count
+GPU[1].SuperDir,stall_mshr_full,0.0,count
+GPU[1].SuperDir,stall_victim_locked,0.0,count
+GPU[1].SuperDir,total_dowrite_calls,0.0,count
+GPU[1].SuperDir,stall_bank_full,0.0,count
+GPU[1].SuperDir,stall_evicting_list,0.0,count
+GPU[1].SuperDir,stall_inflight_fetch,0.0,count
+GPU[1].SuperDir,stall_inflight_inv,0.0,count
+GPU[1].SuperDir,stall_top_port_busy,0.0,count
+GPU[1].SuperDir,op5a_shortcut_with_remote_sharer,0.0,count
+GPU[1].SuperDir,do_write_miss_remote,0.0,count
+GPU[1].SuperDir,stall_mshr_buf_full,0.0,count
+GPU[1].SuperDir,allocation_count,0.0,count
+GPU[1].SuperDir,remote_accept_count,0.0,count
+GPU[1].SuperDir,stall_subentry_locked,0.0,count
+GPU[1].SuperDir,stall_bottom_buf_full,0.0,count
+GPU[1].SuperDir,stall_bottom_port_busy,0.0,count
+GPU[1].SuperDir,op5b_writer_cleared_at_finest_bank,0.0,count
+GPU[2].SuperDir,do_write_miss,169806.0,count
+GPU[2].SuperDir,do_write_miss_remote,162457.0,count
+GPU[2].SuperDir,stall_top_port_busy,1306.0,count
+GPU[2].SuperDir,stall_mshr_full,0.0,count
+GPU[2].SuperDir,stall_evicting_list,0.0,count
+GPU[2].SuperDir,stall_bottom_port_busy,6862815.0,count
+GPU[2].SuperDir,total_dowrite_calls,4879348.0,count
+GPU[2].SuperDir,op5b_writer_cleared_at_finest_bank,0.0,count
+GPU[2].SuperDir,remote_accept_count,427367.0,count
+GPU[2].SuperDir,stall_subentry_locked,0.0,count
+GPU[2].SuperDir,stall_bank_full,30.0,count
+GPU[2].SuperDir,stall_mshr_buf_full,48.0,count
+GPU[2].SuperDir,stall_inflight_fetch,3581240.0,count
+GPU[2].SuperDir,stall_victim_locked,0.0,count
+GPU[2].SuperDir,stall_bottom_buf_full,3734530.0,count
+GPU[2].SuperDir,stall_inflight_inv,0.0,count
+GPU[2].SuperDir,op5a_shortcut_with_remote_sharer,0.0,count
+GPU[2].SuperDir,allocation_count,172753.0,count
+GPU[3].SuperDir,allocation_count,191448.0,count
+GPU[3].SuperDir,stall_subentry_locked,0.0,count
+GPU[3].SuperDir,stall_bank_full,463.0,count
+GPU[3].SuperDir,stall_evicting_list,0.0,count
+GPU[3].SuperDir,stall_victim_locked,0.0,count
+GPU[3].SuperDir,stall_bottom_buf_full,9050796.0,count
+GPU[3].SuperDir,stall_inflight_inv,155719.0,count
+GPU[3].SuperDir,op5a_shortcut_with_remote_sharer,0.0,count
+GPU[3].SuperDir,remote_accept_count,1521919.0,count
+GPU[3].SuperDir,do_write_miss_remote,182731.0,count
+GPU[3].SuperDir,stall_mshr_buf_full,1.0,count
+GPU[3].SuperDir,stall_bottom_port_busy,8040937.0,count
+GPU[3].SuperDir,stall_top_port_busy,1585.0,count
+GPU[3].SuperDir,op5b_writer_cleared_at_finest_bank,0.0,count
+GPU[3].SuperDir,do_write_miss,226463.0,count
+GPU[3].SuperDir,stall_mshr_full,0.0,count
+GPU[3].SuperDir,stall_inflight_fetch,5263665.0,count
+GPU[3].SuperDir,total_dowrite_calls,8262972.0,count
+GPU[4].SuperDir,remote_accept_count,288480.0,count
+GPU[4].SuperDir,stall_mshr_full,0.0,count
+GPU[4].SuperDir,stall_victim_locked,0.0,count
+GPU[4].SuperDir,stall_inflight_fetch,2703517.0,count
+GPU[4].SuperDir,allocation_count,139556.0,count
+GPU[4].SuperDir,do_write_miss_remote,139554.0,count
+GPU[4].SuperDir,stall_evicting_list,0.0,count
+GPU[4].SuperDir,stall_mshr_buf_full,0.0,count
+GPU[4].SuperDir,stall_inflight_inv,0.0,count
+GPU[4].SuperDir,stall_bottom_port_busy,4278544.0,count
+GPU[4].SuperDir,stall_top_port_busy,1866.0,count
+GPU[4].SuperDir,stall_bank_full,0.0,count
+GPU[4].SuperDir,total_dowrite_calls,4267222.0,count
+GPU[4].SuperDir,op5b_writer_cleared_at_finest_bank,0.0,count
+GPU[4].SuperDir,do_write_miss,139554.0,count
+GPU[4].SuperDir,stall_subentry_locked,0.0,count
+GPU[4].SuperDir,stall_bottom_buf_full,2699223.0,count
+GPU[4].SuperDir,op5a_shortcut_with_remote_sharer,0.0,count
+GPU[5].SuperDir,stall_evicting_list,0.0,count
+GPU[5].SuperDir,stall_victim_locked,0.0,count
+GPU[5].SuperDir,stall_inflight_fetch,3829207.0,count
+GPU[5].SuperDir,do_write_miss,216461.0,count
+GPU[5].SuperDir,stall_mshr_full,0.0,count
+GPU[5].SuperDir,stall_bank_full,7248.0,count
+GPU[5].SuperDir,stall_bottom_port_busy,7063788.0,count
+GPU[5].SuperDir,op5b_writer_cleared_at_finest_bank,0.0,count
+GPU[5].SuperDir,stall_bottom_buf_full,3507269.0,count
+GPU[5].SuperDir,stall_mshr_buf_full,0.0,count
+GPU[5].SuperDir,stall_inflight_inv,0.0,count
+GPU[5].SuperDir,stall_top_port_busy,1161.0,count
+GPU[5].SuperDir,total_dowrite_calls,4595674.0,count
+GPU[5].SuperDir,allocation_count,209215.0,count
+GPU[5].SuperDir,remote_accept_count,441476.0,count
+GPU[5].SuperDir,do_write_miss_remote,216461.0,count
+GPU[5].SuperDir,stall_subentry_locked,0.0,count
+GPU[5].SuperDir,op5a_shortcut_with_remote_sharer,0.0,count

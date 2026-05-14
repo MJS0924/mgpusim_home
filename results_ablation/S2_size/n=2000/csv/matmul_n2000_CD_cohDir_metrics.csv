@@ -1,0 +1,213 @@
+Location,What,Value,Unit
+GPU[2].CohDir,UpdateEntry,1220188.0,count
+GPU[2].CohDir,InvalidateByEviction,708908.0,count
+GPU[2].CohDir,InvalidateByWrite,0.0,count
+GPU[2].CohDir,ToLocalData,4518317.0,count
+GPU[2].CohDir,ToRemoteData,2889834.0,count
+GPU[2].CohDir,FromLocal,6156292.0,count
+GPU[2].CohDir,FromRemote,1251859.0,count
+GPU[3].CohDir,UpdateEntry,759673.0,count
+GPU[3].CohDir,InvalidateByEviction,337054.0,count
+GPU[3].CohDir,InvalidateByWrite,0.0,count
+GPU[3].CohDir,ToLocalData,1563798.0,count
+GPU[3].CohDir,ToRemoteData,5060386.0,count
+GPU[3].CohDir,FromLocal,5818492.0,count
+GPU[3].CohDir,FromRemote,805692.0,count
+GPU[4].CohDir,UpdateEntry,748471.0,count
+GPU[4].CohDir,InvalidateByEviction,307758.0,count
+GPU[4].CohDir,InvalidateByWrite,0.0,count
+GPU[4].CohDir,ToLocalData,1531500.0,count
+GPU[4].CohDir,ToRemoteData,5022594.0,count
+GPU[4].CohDir,FromLocal,5771881.0,count
+GPU[4].CohDir,FromRemote,782213.0,count
+GPU[5].CohDir,UpdateEntry,1068713.0,count
+GPU[5].CohDir,InvalidateByEviction,479938.0,count
+GPU[5].CohDir,InvalidateByWrite,0.0,count
+GPU[5].CohDir,ToLocalData,2285163.0,count
+GPU[5].CohDir,ToRemoteData,3602487.0,count
+GPU[5].CohDir,FromLocal,4789569.0,count
+GPU[5].CohDir,FromRemote,1098081.0,count
+GPU[2].RDMA,Read Req 12,2194812.0,count
+GPU[2].RDMA,Read Rsp 68,2194812.0,count
+GPU[2].RDMA,Inv Req 12,1016838.0,count
+GPU[2].RDMA,Inv Rsp 4,1016838.0,count
+GPU[2].RDMA,Write Req 76,104377.0,count
+GPU[2].RDMA,Write Rsp 4,122598.0,count
+GPU[3].RDMA,Read Req 12,1693604.0,count
+GPU[3].RDMA,Read Rsp 68,1693604.0,count
+GPU[3].RDMA,Inv Req 12,860159.0,count
+GPU[3].RDMA,Inv Rsp 4,860159.0,count
+GPU[3].RDMA,Write Req 76,118608.0,count
+GPU[3].RDMA,Write Rsp 4,148529.0,count
+GPU[4].RDMA,Read Req 12,1632911.0,count
+GPU[4].RDMA,Read Rsp 68,1632911.0,count
+GPU[4].RDMA,Inv Req 12,831418.0,count
+GPU[4].RDMA,Inv Rsp 4,831418.0,count
+GPU[4].RDMA,Write Req 76,136472.0,count
+GPU[4].RDMA,Write Rsp 4,167459.0,count
+GPU[5].RDMA,Read Req 12,1921311.0,count
+GPU[5].RDMA,Read Rsp 68,1921311.0,count
+GPU[5].RDMA,Inv Req 12,958901.0,count
+GPU[5].RDMA,Inv Rsp 4,958901.0,count
+GPU[5].RDMA,Write Req 76,73595.0,count
+GPU[5].RDMA,Write Rsp 4,93947.0,count
+GPU[1].CohDir,act_InsertNewEntry,0.0,count
+GPU[1].CohDir,mshr_forward_count,0.0,count
+GPU[1].CohDir,stall_mshr_full,0.0,count
+GPU[1].CohDir,op5b_remote_write_hit_cleared_writer,0.0,count
+GPU[1].CohDir,act_InvalidateEntry,0.0,count
+GPU[1].CohDir,total_dowrite_calls,0.0,count
+GPU[1].CohDir,wait_dir_ns_fast,0.0,count
+GPU[1].CohDir,wait_count_bank,0.0,count
+GPU[1].CohDir,stall_block_locked,0.0,count
+GPU[1].CohDir,wait_dir_ns_bypass,0.0,count
+GPU[1].CohDir,wait_bottom_ns_bank,0.0,count
+GPU[1].CohDir,act_EvictAndInsertNew,0.0,count
+GPU[1].CohDir,stall_evicting_list,0.0,count
+GPU[1].CohDir,act_UpdateEntry,0.0,count
+GPU[1].CohDir,act_BypassingDirectory,0.0,count
+GPU[1].CohDir,stall_bank_full,0.0,count
+GPU[1].CohDir,stall_top_port_busy,0.0,count
+GPU[1].CohDir,wait_bottom_ns_bypass,0.0,count
+GPU[1].CohDir,wait_count_bypass,0.0,count
+GPU[1].CohDir,wait_bottom_ns_fast,0.0,count
+GPU[1].CohDir,wait_count_fast,0.0,count
+GPU[1].CohDir,op5a_shortcut_with_remote_sharer,0.0,count
+GPU[1].CohDir,bottom_send_count,0.0,count
+GPU[1].CohDir,stall_bottom_buf_full,0.0,count
+GPU[1].CohDir,stall_mshr_buf_full,0.0,count
+GPU[1].CohDir,stall_inflight_fetch,0.0,count
+GPU[1].CohDir,stall_bottom_port_busy,0.0,count
+GPU[1].CohDir,act_Nothing,0.0,count
+GPU[1].CohDir,act_InvalidateAndUpdate,0.0,count
+GPU[1].CohDir,stall_victim_locked,0.0,count
+GPU[1].CohDir,stall_inflight_inv,0.0,count
+GPU[1].CohDir,wait_dir_ns_bank,0.0,count
+GPU[2].CohDir,act_UpdateEntry,202250.0,count
+GPU[2].CohDir,stall_bottom_buf_full,119463398.0,count
+GPU[2].CohDir,stall_inflight_inv,66034069.0,count
+GPU[2].CohDir,stall_top_port_busy,23.0,count
+GPU[2].CohDir,wait_bottom_ns_fast,11947431.0,count
+GPU[2].CohDir,op5a_shortcut_with_remote_sharer,0.0,count
+GPU[2].CohDir,act_BypassingDirectory,6156292.0,count
+GPU[2].CohDir,mshr_forward_count,401.0,count
+GPU[2].CohDir,stall_bottom_port_busy,1002852.0,count
+GPU[2].CohDir,wait_bottom_ns_bank,92873229.0,count
+GPU[2].CohDir,act_InvalidateAndUpdate,0.0,count
+GPU[2].CohDir,stall_victim_locked,0.0,count
+GPU[2].CohDir,wait_dir_ns_bypass,0.0,count
+GPU[2].CohDir,wait_count_bank,1036159.0,count
+GPU[2].CohDir,act_Nothing,31671.0,count
+GPU[2].CohDir,stall_mshr_full,0.0,count
+GPU[2].CohDir,stall_inflight_fetch,1389496.0,count
+GPU[2].CohDir,act_InvalidateEntry,0.0,count
+GPU[2].CohDir,stall_bank_full,12677153.0,count
+GPU[2].CohDir,wait_count_bypass,6156292.0,count
+GPU[2].CohDir,act_EvictAndInsertNew,1009746.0,count
+GPU[2].CohDir,bottom_send_count,7426372.0,count
+GPU[2].CohDir,stall_block_locked,0.0,count
+GPU[2].CohDir,stall_mshr_buf_full,0.0,count
+GPU[2].CohDir,wait_bottom_ns_bypass,6156292.0,count
+GPU[2].CohDir,wait_dir_ns_fast,42522952.0,count
+GPU[2].CohDir,wait_count_fast,233520.0,count
+GPU[2].CohDir,act_InsertNewEntry,8192.0,count
+GPU[2].CohDir,total_dowrite_calls,67871043.0,count
+GPU[2].CohDir,wait_dir_ns_bank,319935500.0,count
+GPU[2].CohDir,op5b_remote_write_hit_cleared_writer,0.0,count
+GPU[2].CohDir,stall_evicting_list,0.0,count
+GPU[3].CohDir,wait_count_fast,121043.0,count
+GPU[3].CohDir,stall_block_locked,0.0,count
+GPU[3].CohDir,stall_evicting_list,0.0,count
+GPU[3].CohDir,stall_victim_locked,0.0,count
+GPU[3].CohDir,stall_inflight_fetch,1923353.0,count
+GPU[3].CohDir,total_dowrite_calls,33725735.0,count
+GPU[3].CohDir,wait_bottom_ns_bypass,5806293.0,count
+GPU[3].CohDir,wait_dir_ns_bank,155360491.0,count
+GPU[3].CohDir,op5a_shortcut_with_remote_sharer,0.0,count
+GPU[3].CohDir,act_InvalidateAndUpdate,0.0,count
+GPU[3].CohDir,act_BypassingDirectory,5806294.0,count
+GPU[3].CohDir,bottom_send_count,6654105.0,count
+GPU[3].CohDir,stall_mshr_full,15.0,count
+GPU[3].CohDir,stall_bottom_buf_full,60221961.0,count
+GPU[3].CohDir,wait_count_bypass,5806294.0,count
+GPU[3].CohDir,wait_dir_ns_fast,9950006.0,count
+GPU[3].CohDir,wait_bottom_ns_bank,73076249.0,count
+GPU[3].CohDir,wait_dir_ns_bypass,0.0,count
+GPU[3].CohDir,wait_bottom_ns_fast,2550142.0,count
+GPU[3].CohDir,op5b_remote_write_hit_cleared_writer,0.0,count
+GPU[3].CohDir,act_EvictAndInsertNew,688594.0,count
+GPU[3].CohDir,stall_inflight_inv,32964208.0,count
+GPU[3].CohDir,stall_bottom_port_busy,5869305.0,count
+GPU[3].CohDir,act_Nothing,58217.0,count
+GPU[3].CohDir,act_UpdateEntry,62887.0,count
+GPU[3].CohDir,act_InvalidateEntry,0.0,count
+GPU[3].CohDir,mshr_forward_count,61.0,count
+GPU[3].CohDir,stall_mshr_buf_full,0.0,count
+GPU[3].CohDir,act_InsertNewEntry,8192.0,count
+GPU[3].CohDir,stall_bank_full,6132168.0,count
+GPU[3].CohDir,stall_top_port_busy,89.0,count
+GPU[3].CohDir,wait_count_bank,726707.0,count
+GPU[4].CohDir,stall_victim_locked,0.0,count
+GPU[4].CohDir,stall_inflight_inv,34405423.0,count
+GPU[4].CohDir,stall_top_port_busy,75.0,count
+GPU[4].CohDir,wait_bottom_ns_fast,3543914.0,count
+GPU[4].CohDir,act_Nothing,34358.0,count
+GPU[4].CohDir,mshr_forward_count,56.0,count
+GPU[4].CohDir,wait_dir_ns_bypass,0.0,count
+GPU[4].CohDir,act_BypassingDirectory,5771265.0,count
+GPU[4].CohDir,stall_mshr_full,15.0,count
+GPU[4].CohDir,stall_evicting_list,0.0,count
+GPU[4].CohDir,bottom_send_count,6585081.0,count
+GPU[4].CohDir,wait_count_bypass,5771265.0,count
+GPU[4].CohDir,wait_bottom_ns_bank,75007422.0,count
+GPU[4].CohDir,op5b_remote_write_hit_cleared_writer,0.0,count
+GPU[4].CohDir,stall_block_locked,0.0,count
+GPU[4].CohDir,wait_bottom_ns_bypass,5771265.0,count
+GPU[4].CohDir,act_UpdateEntry,54670.0,count
+GPU[4].CohDir,act_InvalidateAndUpdate,0.0,count
+GPU[4].CohDir,stall_bank_full,11805666.0,count
+GPU[4].CohDir,stall_bottom_port_busy,9199847.0,count
+GPU[4].CohDir,wait_count_fast,88972.0,count
+GPU[4].CohDir,wait_dir_ns_bank,177183848.0,count
+GPU[4].CohDir,act_InvalidateEntry,0.0,count
+GPU[4].CohDir,stall_bottom_buf_full,57039420.0,count
+GPU[4].CohDir,stall_mshr_buf_full,0.0,count
+GPU[4].CohDir,stall_inflight_fetch,1633500.0,count
+GPU[4].CohDir,wait_count_bank,724788.0,count
+GPU[4].CohDir,op5a_shortcut_with_remote_sharer,0.0,count
+GPU[4].CohDir,act_InsertNewEntry,8192.0,count
+GPU[4].CohDir,act_EvictAndInsertNew,685609.0,count
+GPU[4].CohDir,total_dowrite_calls,34994929.0,count
+GPU[4].CohDir,wait_dir_ns_fast,13721964.0,count
+GPU[5].CohDir,stall_bank_full,13382216.0,count
+GPU[5].CohDir,stall_bottom_buf_full,111776620.0,count
+GPU[5].CohDir,stall_inflight_fetch,2795673.0,count
+GPU[5].CohDir,stall_bottom_port_busy,1088173.0,count
+GPU[5].CohDir,wait_dir_ns_fast,31456951.0,count
+GPU[5].CohDir,wait_bottom_ns_fast,8282704.0,count
+GPU[5].CohDir,wait_dir_ns_bank,281339828.0,count
+GPU[5].CohDir,act_EvictAndInsertNew,922108.0,count
+GPU[5].CohDir,stall_top_port_busy,55.0,count
+GPU[5].CohDir,wait_dir_ns_bypass,0.0,count
+GPU[5].CohDir,wait_bottom_ns_bank,98870350.0,count
+GPU[5].CohDir,act_InsertNewEntry,8192.0,count
+GPU[5].CohDir,act_InvalidateEntry,0.0,count
+GPU[5].CohDir,stall_mshr_full,0.0,count
+GPU[5].CohDir,stall_inflight_inv,61684446.0,count
+GPU[5].CohDir,wait_bottom_ns_bypass,4768944.0,count
+GPU[5].CohDir,wait_count_fast,188304.0,count
+GPU[5].CohDir,op5b_remote_write_hit_cleared_writer,0.0,count
+GPU[5].CohDir,act_UpdateEntry,138413.0,count
+GPU[5].CohDir,stall_evicting_list,0.0,count
+GPU[5].CohDir,total_dowrite_calls,63851123.0,count
+GPU[5].CohDir,op5a_shortcut_with_remote_sharer,0.0,count
+GPU[5].CohDir,bottom_send_count,5908002.0,count
+GPU[5].CohDir,mshr_forward_count,101.0,count
+GPU[5].CohDir,stall_victim_locked,0.0,count
+GPU[5].CohDir,stall_mshr_buf_full,0.0,count
+GPU[5].CohDir,wait_count_bypass,4768945.0,count
+GPU[5].CohDir,wait_count_bank,950652.0,count
+GPU[5].CohDir,act_Nothing,49992.0,count
+GPU[5].CohDir,act_InvalidateAndUpdate,0.0,count
+GPU[5].CohDir,act_BypassingDirectory,4768945.0,count
+GPU[5].CohDir,stall_block_locked,0.0,count

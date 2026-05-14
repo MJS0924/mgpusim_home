@@ -2,34 +2,167 @@
 import os
 
 # 1. 설정값 초기화
+# benchmarks = [
+#     'matrixmultiplication',
+#     'fir',
+#     'fft',
+#     'atax',
+#     'bfs',
+#     # 'conv2d',
+#     'simpleconvolution',
+#     'im2col',
+#     'kmeans',
+#     'matrixmultiplication',
+#     'matrixtranspose',
+#     'pagerank',
+#     'spmv',
+#     'stencil2d'
+#     # DNN layer benchmarks
+#     'relu',
+#     'conv2d',
+#     # DNN training benchmarks (dataset 없음: xor 만 활성화)
+#     'xor',
+#     'lenet',
+#     'minerva',
+#     'vgg16',
+# ]
+
 benchmarks = [
     'fir',
-    'fft',
-    'atax',
-    'bfs',
-    # 'conv2d',
-    'simpleconvolution',
+    # 'fft',
+    # 'atax',
+    # 'bfs',
+    # 'simpleconvolution',
     'im2col',
-    'kmeans',
+    # 'kmeans',
     'matrixmultiplication',
     'matrixtranspose',
     'pagerank',
-    'stencil2d'
+    'spmv',
+    'stencil2d',
+
+    # # DNN layer benchmarks
+    'relu',
+    'conv2d',
+
+    # # DNN training benchmarks (dataset 없음: xor 만 활성화)
+    'xor',
+    'lenet',
+    'minerva',
+    'vgg16',
 ]
 
+# Per-window snapshot 을 활성화할 workload 목록 (§3.3 R-sweep 대상)
+PW_BENCHMARKS = {
+    'fir',
+    'im2col',
+    'matrixmultiplication',
+    'matrixtranspose',
+    'pagerank',
+    'spmv',
+    'stencil2d',
+    'relu',
+    'conv2d'
+}
+PW_WINDOW_INST = 50000
+
+# stdout 저장 여부. False면 text 파일로도 저장하지 않고 터미널에도 출력하지 않음.
+# (sqlite은 그대로 저장되므로 sqlite 기반 분석은 정상 동작)
+# stderr는 항상 터미널로 흘림 (에러/경고 확인용)
+SAVE_STDOUT = True
+
+STDOUT_REDIRECT = "> /dev/null"
+
 # 벤치마크별 전용 인자 매핑
+# 메모리 사용량을 matmul 3266³ (= 3 × 3266² × 4B float32 ≈ 128.0 MB) 에
+# 맞춰 스케일 조정 (이전 30 MB → 128 MB, 약 4.17×). 각 항목의 메모리 공식과
+# 계산값은 주석으로 표기.
+#
+# 메모리 공식 (모두 디바이스 GPU 메모리 기준):
+#   matmul    : 12 × X² (X=Y=Z 가정, A+B+C 세 행렬 float32)
+#   fir       : 8L (input + output float32)
+#   fft       : MB × 1024² (직접 매핑, complex64 = 8B)
+#   atax      : (N² + 3N) × 4 (NX=NY=N 가정)
+#   bfs       : N × (D+2) × 4
+#   simpleconv: ((W+m-1)² + W² + m²) × 4 (W=H, mask m=3)
+#   im2col    : 24HW + 216(H-2)(W-2) (input float64 + im2col output)
+#   kmeans    : (2pf + p + cf) × 4
+#   transpose : 8W² (input + output float32, uint32)
+#   pagerank  : (3N + 2 × N²×sparsity) × 4 ≈ 8 × N² × sparsity
+#   spmv      : (2 × Dim²×s + 3 × Dim + 1) × 4 ≈ 8 × Dim² × s
+#   stencil2d : 2 × R × pad16(C) × 4 ≈ 8RC
+#   conv2d    : 24HW + 1176(H-6)² (input + im2col 내부 버퍼, KH=KW=7)
+#   relu      : 8L (input + output float32)
+# Coalescability heatmap 실험은 sharer pattern 만 캡처하면 되므로 main
+# 실험 (~128 MB footprint) 의 절반인 ~64 MB 로 축소한다. Linear-scale
+# 워크로드는 1/2, square-scale 워크로드는 1/√2 ≈ 0.707 로 차원을 줄인다.
+# 메모리 공식은 main 의 bench_args_map 주석과 동일.
+#
+# 메모리 추정 (모두 ~64 MB 부근):
+#   fir       : 8 × 8,000,000               = 64.0 MB
+#   im2col    : 24 × 520² + 216 × 518²      ≈ 64.5 MB
+#   matmul    : 12 × 1800²                  = 38.9 MB (75 MB → 38.9, ~½)
+#   transpose : 8 × 2828²                   ≈ 64.0 MB
+#   pagerank  : 40000² × 0.005 × 8          ≈ 64.0 MB
+#   spmv      : 8 × 92681² × 0.000931       ≈ 64.0 MB
+#   stencil2d : 8 × 2828 × 2832             ≈ 64.0 MB
+#   conv2d    : 24 × 236² + 1176 × 230²     ≈ 63.5 MB
+#   relu      : 8 × 8,000,000               = 64.0 MB
+#   DNN train : batch-size 절반
+bench_args_map_coal = {
+    'fir':                    "-length=8000000",
+    'fft':                    "-MB=64 -passes=64",
+    'atax':                   "-x=4000 -y=4000",
+    'bfs':                    "-node=470000 -degree=32",
+    'conv2d':                 "-N=1 -C=3 -H=236 -W=236 -output-channel=3 -kernel-height=7 -kernel-width=7",
+    'im2col':                 "-N=1 -C=3 -H=520 -W=520 -kernel-height=3 -kernel-width=3",
+    'kmeans':                 "-points=250000 -features=32 -clusters=100 -max-iter=5",
+    'matrixmultiplication':   "-x=1800 -y=1800 -z=1800",
+    'matrixtranspose':        "-width=2828",
+    'pagerank':               "-node=40000 -sparsity=0.005 -iterations=3",
+    'spmv':                   "-dim=92681 -sparsity=0.000931",
+    'stencil2d':              "-row=2828 -col=2828 -iter=4",
+    'relu':                   "-length=8000000",
+    'xor':                    "",
+    'lenet':                  "-epoch=1 -max-batch-per-epoch=2 -batch-size=256",
+    'minerva':                "-epoch=1 -max-batch-per-epoch=2 -batch-size=256",
+    'vgg16':                  "-epoch=1 -max-batch-per-epoch=2 -batch-size=16",
+}
+
 bench_args_map = {
-    'fir': "-length=655360",
-    'fft': "-MB=10 -passes=64",
-    'atax': "-x=8192 -y=8192",
-    'bfs': "-node=262144 -degree=16",
-    'conv2d': "-N=1 -C=3 -H=500 -W=500 -output-channel=3 -kernel-height=7 -kernel-width=7",
-    'im2col': "-N=1 -C=3 -H=128 -W=128 -kernel-height=3 -kernel-width=3",
-    'kmeans': "-points=30000 -features=32 -clusters=100 -max-iter=5",
-    'matrixmultiplication': "-x=1000 -y=1000 -z=1000",
-    'matrixtranspose': "-width=4096",
-    'pagerank': "-node=16384 -sparsity=0.005 -iterations=4",
-    'stencil2d': "-row=2048 -col=2048 -iter=20"
+    # 128.0 MB: 8 × 16,000,000
+    'fir': "-length=16000000",
+    # 128.0 MiB ≈ 134.2 MB
+    'fft': "-MB=128 -passes=64",
+    # 128.0 MB: (5657² + 3×5657) × 4
+    'atax': "-x=5657 -y=5657",
+    # 127.8 MB: 940000 × 34 × 4
+    'bfs': "-node=940000 -degree=32",
+    # 128.4 MB: 1×3×333²×8 + 1176×327² (im2col 내부 버퍼 지배)
+    'conv2d': "-N=1 -C=3 -H=333 -W=333 -output-channel=3 -kernel-height=7 -kernel-width=7",
+    # 129.0 MB: 24×735² + 216×733²
+    'im2col': "-N=1 -C=3 -H=735 -W=735 -kernel-height=3 -kernel-width=3",
+    # 128.0 MB: (2×500000×32 + 500000 + 100×32) × 4
+    'kmeans': "-points=500000 -features=32 -clusters=100 -max-iter=5",
+    # 128.0 MB (기준): 3 × 3266² × 4
+    'matrixmultiplication': "-x=2500 -y=2500 -z=2500",
+    # 128.0 MB: 2 × 4000² × 4 (uint32)
+    # 이전 -width=8192는 사실 ~537 MB로 코멘트(30.73 MB)와 불일치하던 버그.
+    'matrixtranspose': "-width=4000",
+    # 128.1 MB: 56600² × 0.005 ≈ 16.0M edges, × 8B
+    'pagerank': "-node=56600 -sparsity=0.005 -iterations=3",
+    # 128.0 MB: 131072² × 0.000931 × 8 + 12 × 131072
+    # numWGX = 131072/128 = 1024 → 4 real GPU 균등 분배 (각 256 WGs)
+    'spmv': "-dim=131072 -sparsity=0.000931",
+    # 128.5 MB: 2 × 4000 × 4016 × 4 (16B padding)
+    'stencil2d': "-row=4000 -col=4000 -iter=4",
+    # DNN
+    # 128.0 MB: 8 × 16,000,000
+    'relu':    "-length=16000000",
+    'xor':     "",
+    'lenet':   "-epoch=1 -max-batch-per-epoch=2 -batch-size=512",
+    'minerva': "-epoch=1 -max-batch-per-epoch=2 -batch-size=512",
+    'vgg16':   "-epoch=1 -max-batch-per-epoch=2 -batch-size=32",
 }
 
 # 현재 위치 (scripts 폴더)
@@ -116,8 +249,10 @@ for benchmark in benchmarks:
     result_dir_sd = os.path.join(results_base, "superdirectory")
     sd_text_dir = os.path.join(result_dir_sd, "rawdata", "text")
     sd_sql_dir  = os.path.join(result_dir_sd, "rawdata", "sql")
+    sd_event_dir = os.path.join(result_dir_sd, "rawdata", "events")  # 추가
     os.makedirs(sd_text_dir, exist_ok=True)
     os.makedirs(sd_sql_dir,  exist_ok=True)
+    os.makedirs(sd_event_dir, exist_ok=True)  # 추가
 
     sd_dir = os.path.join(sample_dir, "superdirectory")
     os.makedirs(sd_dir, exist_ok=True)
@@ -126,19 +261,31 @@ for benchmark in benchmarks:
     with open(sd_sh_path, "w") as f:
         out_txt = os.path.join(sd_text_dir, f"{benchmark}_superdirectory.txt")
         out_sql = os.path.join(sd_sql_dir,  f"{benchmark}_superdirectory.sqlite3")
+        out_events = os.path.join(sd_event_dir, f"{benchmark}_events.parquet")  # 추가
+
+        # per-window snapshot 경로
+        pw_csv = ""
+        if benchmark in PW_BENCHMARKS:
+            pw_out_dir = os.path.join(results_base, "per_window", benchmark)
+            os.makedirs(pw_out_dir, exist_ok=True)
+            pw_csv = os.path.join(pw_out_dir, f"{benchmark}_SD_per_window.csv")
 
         f.write("#!/bin/bash\n\n")
         f.write(f"cd {sd_dir}\n\n")
+        f.write(f"export EVENT_LOG_PATH={out_events}\n\n")  # 추가 — workload 별 분리
         f.write(f"../{benchmark} \\\n")
         f.write("    -timing \\\n")
         f.write("    -unified-gpus=1,2,3,4,5 \\\n")
         f.write("    -use-unified-memory \\\n")
-        f.write("    -page-migration-policy=AccessCounter \\\n")
         f.write("    -coherence-directory=SuperDirectory \\\n")
         f.write("    -log2-page-size=12 \\\n")
         f.write(f"    {bench_args} \\\n")
+        if pw_csv:
+            f.write(f"    -per-window-snapshot \\\n")
+            f.write(f"    -window-instructions={PW_WINDOW_INST} \\\n")
+            f.write(f"    -per-window-output={pw_csv} \\\n")
         f.write("    -report-all \\\n")
-        f.write(f"    > {out_txt}\n\n")
+        f.write(f"    {f'> {out_txt}' if SAVE_STDOUT else STDOUT_REDIRECT}\n\n")
         f.write("# 결과 파일(SQLite) 이동 및 이름 변경\n")
         f.write(f"mv akita_sim_*.sqlite3 {out_sql} 2>/dev/null\n\n")
 
@@ -147,7 +294,10 @@ for benchmark in benchmarks:
     all_dir_scripts.setdefault("superdirectory", []).append((benchmark, sd_sh_path))
 
     # ---------------------------------------------------------
-    # [3] REC 스크립트 및 경로 생성
+    # [3] REC sweep 스크립트 및 경로 생성
+    #     - default : numSet=1024 (다른 directory와 동일)
+    #     - halfset : numSet=512  (REC 고유의 2x entry-size overhead 반영)
+    #     각 config는 별개의 subdirectory에서 실행 (sqlite3 충돌 방지)
     # ---------------------------------------------------------
     result_dir_rec = os.path.join(results_base, "REC")
     rec_text_dir = os.path.join(result_dir_rec, "rawdata", "text")
@@ -159,28 +309,86 @@ for benchmark in benchmarks:
     os.makedirs(rec_dir, exist_ok=True)
     rec_sh_path = os.path.join(rec_dir, f"run_{benchmark}_REC.sh")
 
-    with open(rec_sh_path, "w") as f:
-        out_txt = os.path.join(rec_text_dir, f"{benchmark}_REC.txt")
-        out_sql = os.path.join(rec_sql_dir,  f"{benchmark}_REC.sqlite3")
+    rec_configs = [
+        {"id": "default", "halfset_arg": ""},
+        {"id": "halfset", "halfset_arg": "    -rec-half-set \\\n"},
+    ]
 
+    rec_sub_scripts = []  # [(config_id, sub_sh_path), ...]
+
+    for cfg in rec_configs:
+        cfg_run_dir = os.path.join(rec_dir, f"run_{cfg['id']}")
+        os.makedirs(cfg_run_dir, exist_ok=True)
+        cfg_sh_path = os.path.join(cfg_run_dir, f"run_{benchmark}_REC_{cfg['id']}.sh")
+
+        if cfg['id'] == "default":
+            out_txt = os.path.join(rec_text_dir, f"{benchmark}_REC.txt")
+            out_sql = os.path.join(rec_sql_dir,  f"{benchmark}_REC.sqlite3")
+            pw_label = "REC"
+        else:
+            out_txt = os.path.join(rec_text_dir, f"{benchmark}_REC_{cfg['id']}.txt")
+            out_sql = os.path.join(rec_sql_dir,  f"{benchmark}_REC_{cfg['id']}.sqlite3")
+            pw_label = f"REC_{cfg['id']}"
+
+        # per-window snapshot path (one CSV per REC sub-config)
+        pw_csv = ""
+        if benchmark in PW_BENCHMARKS:
+            pw_out_dir = os.path.join(results_base, "per_window", benchmark)
+            os.makedirs(pw_out_dir, exist_ok=True)
+            pw_csv = os.path.join(pw_out_dir, f"{benchmark}_{pw_label}_per_window.csv")
+
+        with open(cfg_sh_path, "w") as f:
+            f.write("#!/bin/bash\n\n")
+            f.write(f"cd {cfg_run_dir}\n\n")           # 전용 디렉토리로 이동
+            f.write(f"../../{benchmark} \\\n")          # 바이너리는 REC의 두 단계 위
+            f.write("    -timing \\\n")
+            f.write("    -unified-gpus=1,2,3,4,5 \\\n")
+            f.write("    -use-unified-memory \\\n")
+            # f.write("    -page-migration-policy=AccessCounter \\\n")
+            f.write("    -coherence-directory=REC \\\n")
+            f.write("    -log2-page-size=12 \\\n")
+            f.write(f"    {bench_args} \\\n")
+            if cfg['halfset_arg']:
+                f.write(cfg['halfset_arg'])
+            if pw_csv:
+                f.write(f"    -per-window-snapshot \\\n")
+                f.write(f"    -window-instructions={PW_WINDOW_INST} \\\n")
+                f.write(f"    -per-window-output={pw_csv} \\\n")
+            f.write("    -report-all \\\n")
+            f.write(f"    {f'> {out_txt}' if SAVE_STDOUT else STDOUT_REDIRECT}\n\n")
+            f.write("# 결과 파일(SQLite) 이동 및 이름 변경\n")
+            f.write(f"mv akita_sim_*.sqlite3 {out_sql} 2>/dev/null\n\n")
+
+        os.chmod(cfg_sh_path, 0o744)
+        rec_sub_scripts.append((cfg['id'], cfg_sh_path))
+
+    # 메인 REC 스크립트: sub-script를 최대 MAX_PARALLEL개 병렬 실행
+    with open(rec_sh_path, "w") as f:
         f.write("#!/bin/bash\n\n")
-        f.write(f"cd {rec_dir}\n\n")
-        f.write(f"../{benchmark} \\\n")
-        f.write("    -timing \\\n")
-        f.write("    -unified-gpus=1,2,3,4,5 \\\n")
-        f.write("    -use-unified-memory \\\n")
-        f.write("    -page-migration-policy=AccessCounter \\\n")
-        f.write("    -coherence-directory=REC \\\n")
-        f.write("    -log2-page-size=12 \\\n")
-        f.write(f"    {bench_args} \\\n")
-        f.write("    -report-all \\\n")
-        f.write(f"    > {out_txt}\n\n")
-        f.write("# 결과 파일(SQLite) 이동 및 이름 변경\n")
-        f.write(f"mv akita_sim_*.sqlite3 {out_sql} 2>/dev/null\n\n")
+        f.write("MAX_PARALLEL=4\n\n")
+        f.write("trap 'echo \"중단 중...\"; kill 0; exit 1' INT TERM\n\n")
+        f.write("run_bg() {\n")
+        f.write("    local config_id=$1\n")
+        f.write("    local script_path=$2\n")
+        f.write(f"    echo \"  [REC-{benchmark}][${{config_id}}] 실행 중...\"\n")
+        f.write("    bash \"${script_path}\" &\n")
+        f.write("    while [ \"$(jobs -rp | wc -l)\" -ge \"${MAX_PARALLEL}\" ]; do\n")
+        f.write("        wait -n 2>/dev/null || wait\n")
+        f.write("    done\n")
+        f.write("}\n\n")
+        f.write(f"echo \"=== [REC][{benchmark}] 시작 (병렬 최대 ${{MAX_PARALLEL}}) ===\"\n")
+        for cfg_id, sub_sh_path in rec_sub_scripts:
+            f.write(f"run_bg \"{cfg_id}\" \"{sub_sh_path}\"\n")
+        f.write("wait\n")
+        f.write(f"echo \"=== [REC][{benchmark}] 완료 ===\"\n")
 
     os.chmod(rec_sh_path, 0o744)
-    all_benchmark_scripts[benchmark].append(("REC", rec_sh_path))
+    # directory master(run_REC_all.sh)용: benchmark당 REC wrapper 하나
     all_dir_scripts.setdefault("REC", []).append((benchmark, rec_sh_path))
+    # workload master(run_{benchmark}_all.sh)용: 개별 sub-script를 직접 큐에 등록
+    # (REC wrapper를 통하면 wrapper가 내부에서 또 병렬 실행해 동시 실행 수가 늘어남)
+    for cfg_id, sub_sh_path in rec_sub_scripts:
+        all_benchmark_scripts[benchmark].append((f"REC_{cfg_id}", sub_sh_path))
 
     # ---------------------------------------------------------
     # [4] HMG 스크립트 및 경로 생성
@@ -199,19 +407,30 @@ for benchmark in benchmarks:
         out_txt = os.path.join(hmg_text_dir, f"{benchmark}_HMG.txt")
         out_sql = os.path.join(hmg_sql_dir,  f"{benchmark}_HMG.sqlite3")
 
+        # per-window snapshot path
+        pw_csv = ""
+        if benchmark in PW_BENCHMARKS:
+            pw_out_dir = os.path.join(results_base, "per_window", benchmark)
+            os.makedirs(pw_out_dir, exist_ok=True)
+            pw_csv = os.path.join(pw_out_dir, f"{benchmark}_HMG_per_window.csv")
+
         f.write("#!/bin/bash\n\n")
         f.write(f"cd {hmg_dir}\n\n")
         f.write(f"../{benchmark} \\\n")
         f.write("    -timing \\\n")
         f.write("    -unified-gpus=1,2,3,4,5 \\\n")
         f.write("    -use-unified-memory \\\n")
-        f.write("    -page-migration-policy=AccessCounter \\\n")
+        # f.write("    -page-migration-policy=AccessCounter \\\n")
         f.write("    -coherence-directory=HMG \\\n")
         f.write("    -coherence-unit-size=2 \\\n")
         f.write("    -log2-page-size=12 \\\n")
         f.write(f"    {bench_args} \\\n")
+        if pw_csv:
+            f.write(f"    -per-window-snapshot \\\n")
+            f.write(f"    -window-instructions={PW_WINDOW_INST} \\\n")
+            f.write(f"    -per-window-output={pw_csv} \\\n")
         f.write("    -report-all \\\n")
-        f.write(f"    > {out_txt}\n\n")
+        f.write(f"    {f'> {out_txt}' if SAVE_STDOUT else STDOUT_REDIRECT}\n\n")
         f.write("# 결과 파일(SQLite) 이동 및 이름 변경\n")
         f.write(f"mv akita_sim_*.sqlite3 {out_sql} 2>/dev/null\n\n")
 
@@ -221,6 +440,8 @@ for benchmark in benchmarks:
 
     # ---------------------------------------------------------
     # [5] CD (CoherenceDirectory) 스크립트 및 경로 생성
+    #     각 config는 별개의 subdirectory에서 실행 (sqlite3 충돌 방지)
+    #     메인 스크립트는 최대 MAX_PARALLEL개 병렬 launcher
     # ---------------------------------------------------------
     result_dir_cd = os.path.join(results_base, "CD")
     cd_text_dir = os.path.join(result_dir_cd, "rawdata", "text")
@@ -228,96 +449,179 @@ for benchmark in benchmarks:
     os.makedirs(cd_text_dir, exist_ok=True)
     os.makedirs(cd_sql_dir,  exist_ok=True)
 
+    # motivation 결과 경로 (ideal 실험 결과를 여기에도 저장)
+    result_dir_motiv = os.path.join(results_base, "motivation")
+    motiv_sql_dir  = os.path.join(result_dir_motiv, "rawdata", "sql")
+    motiv_csv_dir  = os.path.join(result_dir_motiv, "rawdata", "csv")
+    os.makedirs(motiv_sql_dir,  exist_ok=True)
+    os.makedirs(motiv_csv_dir,  exist_ok=True)
+
     cd_dir = os.path.join(sample_dir, "CD")
     os.makedirs(cd_dir, exist_ok=True)
     cd_sh_path = os.path.join(cd_dir, f"run_{benchmark}_CD.sh")
 
-    with open(cd_sh_path, "w") as f:
-        f.write("#!/bin/bash\n\n")
-        f.write(f"cd {cd_dir}\n\n")
+    # coherence-unit-size = log2(blocks per region); region = 64B × 2^unit
+    #   0 → 64B, 1 → 128B, 2 → 256B, 4 → 1KB, 6 → 4KB, 8 → 16KB
+    cd_configs = [
+        {"id": "0",     "unit_arg": "-coherence-unit-size=0 \\\n", "ideal_arg": ""},
+        {"id": "1",     "unit_arg": "-coherence-unit-size=1 \\\n", "ideal_arg": ""},
+        {"id": "2",     "unit_arg": "-coherence-unit-size=2 \\\n", "ideal_arg": ""},
+        {"id": "4",     "unit_arg": "-coherence-unit-size=4 \\\n", "ideal_arg": ""},
+        {"id": "6",     "unit_arg": "-coherence-unit-size=6 \\\n", "ideal_arg": ""},
+        {"id": "8",     "unit_arg": "-coherence-unit-size=8 \\\n", "ideal_arg": ""},
+        {"id": "ideal", "unit_arg": "-coherence-unit-size=0 \\\n", "ideal_arg": "    -ideal-directory=true \\\n"},
+    ]
 
-        cd_configs = [
-            {"id": "0",     "dir_arg": "-coherence-directory=CoherenceDirectory \\\n",      "unit_arg": "-coherence-unit-size=0 \\\n", "ideal_arg": ""},
-            {"id": "1",     "dir_arg": "-coherence-directory=CoherenceDirectory \\\n    ",  "unit_arg": "-coherence-unit-size=1 \\\n", "ideal_arg": ""},
-            {"id": "2",     "dir_arg": "-coherence-directory=CoherenceDirectory \\\n    ",  "unit_arg": "-coherence-unit-size=2 \\\n", "ideal_arg": ""},
-            {"id": "3",     "dir_arg": "-coherence-directory=CoherenceDirectory \\\n    ",  "unit_arg": "-coherence-unit-size=3 \\\n", "ideal_arg": ""},
-            {"id": "4",     "dir_arg": "-coherence-directory=CoherenceDirectory \\\n    ",  "unit_arg": "-coherence-unit-size=4 \\\n", "ideal_arg": ""},
-            {"id": "ideal", "dir_arg": "-coherence-directory=CoherenceDirectory \\\n",      "unit_arg": "-coherence-unit-size=0 \\\n", "ideal_arg": "    -ideal-directory=true \\\n"},
-        ]
+    cd_sub_scripts = []  # [(config_id, sub_sh_path), ...]
 
-        for cfg in cd_configs:
+    for cfg in cd_configs:
+        # config 전용 subdirectory
+        cfg_run_dir = os.path.join(cd_dir, f"run_{cfg['id']}")
+        os.makedirs(cfg_run_dir, exist_ok=True)
+        cfg_sh_path = os.path.join(cfg_run_dir, f"run_{benchmark}_CD_{cfg['id']}.sh")
+
+        if cfg['id'] == "ideal":
+            out_txt = os.path.join(cd_text_dir, f"{benchmark}_ideal.txt")
+            out_sql = os.path.join(cd_sql_dir,  f"{benchmark}_ideal.sqlite3")
+        else:
+            out_txt = os.path.join(cd_text_dir, f"{benchmark}_CD_{cfg['id']}.txt")
+            out_sql = os.path.join(cd_sql_dir,  f"{benchmark}_CD_{cfg['id']}.sqlite3")
+
+        # per-window snapshot 경로 (CD_* 와 ideal 모두). ideal은 CD_ prefix
+        # 없이 {benchmark}_ideal_per_window.csv 로 저장하여 다른 분석 스크립트
+        # (perf_check.py 등)와 명명 규칙을 일치시킴.
+        pw_csv = ""
+        if benchmark in PW_BENCHMARKS:
+            pw_out_dir = os.path.join(results_base, "per_window", benchmark)
+            os.makedirs(pw_out_dir, exist_ok=True)
             if cfg['id'] == "ideal":
-                out_txt = os.path.join(cd_text_dir, f"{benchmark}_ideal.txt")
-                out_sql = os.path.join(cd_sql_dir,  f"{benchmark}_ideal.sqlite3")
+                pw_csv = os.path.join(pw_out_dir, f"{benchmark}_ideal_per_window.csv")
             else:
-                out_txt = os.path.join(cd_text_dir, f"{benchmark}_CD_{cfg['id']}.txt")
-                out_sql = os.path.join(cd_sql_dir,  f"{benchmark}_CD_{cfg['id']}.sqlite3")
+                pw_csv = os.path.join(pw_out_dir, f"{benchmark}_CD_{cfg['id']}_per_window.csv")
 
-            f.write(f"../{benchmark} \\\n")
+        with open(cfg_sh_path, "w") as f:
+            f.write("#!/bin/bash\n\n")
+            f.write(f"cd {cfg_run_dir}\n\n")           # 전용 디렉토리로 이동
+            f.write(f"../../{benchmark} \\\n")          # 바이너리는 CD의 두 단계 위
             f.write("    -timing \\\n")
             f.write("    -unified-gpus=1,2,3,4,5 \\\n")
             f.write("    -use-unified-memory \\\n")
-            f.write("    -page-migration-policy=AccessCounter \\\n")
-            f.write(f"    {cfg['dir_arg']}")
+            f.write("    -coherence-directory=CoherenceDirectory \\\n")
             f.write("    -log2-page-size=12 \\\n")
             f.write(f"    {cfg['unit_arg']}")
             f.write(f"    {bench_args} \\\n")
             if cfg['ideal_arg']:
                 f.write(f"{cfg['ideal_arg']}")
+            if pw_csv:
+                f.write(f"    -per-window-snapshot \\\n")
+                f.write(f"    -window-instructions={PW_WINDOW_INST} \\\n")
+                f.write(f"    -per-window-output={pw_csv} \\\n")
             f.write("    -report-all \\\n")
-            f.write(f"    > {out_txt}\n\n")
+            f.write(f"    {f'> {out_txt}' if SAVE_STDOUT else STDOUT_REDIRECT}\n\n")
             f.write("# 결과 파일(SQLite) 이동 및 이름 변경\n")
             f.write(f"mv akita_sim_*.sqlite3 {out_sql} 2>/dev/null\n\n")
+            if cfg['id'] == "ideal":
+                # motivation/rawdata/sql 에도 복사 (summarize.py 호환)
+                motiv_sql = os.path.join(motiv_sql_dir, f"{benchmark}_motivation.sqlite3")
+                f.write("# motivation 경로에도 복사 (summarize.py 호환)\n")
+                f.write(f"cp {out_sql} {motiv_sql} 2>/dev/null\n\n")
+                # Coalescability CSV 수집
+                f.write("# Coalescability CSV 수집\n")
+                f.write("for csv_file in motivation_coalescability_GPU*.csv motivation_cumulative_GPU*.csv; do\n")
+                f.write(f"    [ -f \"$csv_file\" ] && mv \"$csv_file\" \"{motiv_csv_dir}/{benchmark}_$csv_file\"\n")
+                f.write("done\n\n")
+
+        os.chmod(cfg_sh_path, 0o744)
+        cd_sub_scripts.append((cfg['id'], cfg_sh_path))
+
+    # 메인 CD 스크립트: 6개 sub-script를 최대 MAX_PARALLEL개 병렬 실행
+    with open(cd_sh_path, "w") as f:
+        f.write("#!/bin/bash\n\n")
+        f.write("MAX_PARALLEL=4\n\n")
+        f.write("trap 'echo \"중단 중...\"; kill 0; exit 1' INT TERM\n\n")
+        f.write("run_bg() {\n")
+        f.write("    local config_id=$1\n")
+        f.write("    local script_path=$2\n")
+        f.write(f"    echo \"  [CD-{benchmark}][${{config_id}}] 실행 중...\"\n")
+        f.write("    bash \"${script_path}\" &\n")
+        f.write("    while [ \"$(jobs -rp | wc -l)\" -ge \"${MAX_PARALLEL}\" ]; do\n")
+        f.write("        wait -n 2>/dev/null || wait\n")
+        f.write("    done\n")
+        f.write("}\n\n")
+        f.write(f"echo \"=== [CD][{benchmark}] 시작 (병렬 최대 ${{MAX_PARALLEL}}) ===\"\n")
+        for cfg_id, sub_sh_path in cd_sub_scripts:
+            f.write(f"run_bg \"{cfg_id}\" \"{sub_sh_path}\"\n")
+        f.write("wait\n")
+        f.write(f"echo \"=== [CD][{benchmark}] 완료 ===\"\n")
 
     os.chmod(cd_sh_path, 0o744)
-    all_benchmark_scripts[benchmark].append(("CD", cd_sh_path))
+    # directory master(run_CD_all.sh)용: benchmark당 CD wrapper 하나
     all_dir_scripts.setdefault("CD", []).append((benchmark, cd_sh_path))
+    # workload master(run_{benchmark}_all.sh)용: 개별 sub-script를 직접 큐에 등록
+    # (CD wrapper를 통하면 wrapper가 내부에서 또 병렬 실행해 7개 동시 실행 문제 발생)
+    for cfg_id, sub_sh_path in cd_sub_scripts:
+        all_benchmark_scripts[benchmark].append((f"CD_{cfg_id}", sub_sh_path))
 
     # ---------------------------------------------------------
-    # [6] motivation (ideal directory — coalescability experiment)
-    #     실험 전용 설정: -ideal-directory=true, CoherenceDirectory, unit-size=0
-    #     생성물: stdout text, sqlite3, coalescability CSV per GPU
+    # [6] Coalescability heatmap 스크립트 및 경로 생성
+    #     optdirectory 가 access pattern 을 관찰만 하므로 baseline (CD_0)
+    #     1회 실행으로 sharer heatmap CSV 가 생성됨. RLE 압축 + per-window
+    #     dump (instruction window 단위) 가 포함됨.
+    #     Workload 크기는 main 의 ~½ (≈ 64 MB footprint) — visualization
+    #     용도이므로 큰 입력이 필요 없음.
     # ---------------------------------------------------------
-    result_dir_motiv = os.path.join(results_base, "motivation")
-    motiv_text_dir = os.path.join(result_dir_motiv, "rawdata", "text")
-    motiv_sql_dir  = os.path.join(result_dir_motiv, "rawdata", "sql")
-    motiv_csv_dir  = os.path.join(result_dir_motiv, "rawdata", "csv")
-    os.makedirs(motiv_text_dir, exist_ok=True)
-    os.makedirs(motiv_sql_dir,  exist_ok=True)
-    os.makedirs(motiv_csv_dir,  exist_ok=True)
+    result_dir_coal = os.path.join(results_base, "coalescability")
+    coal_text_dir   = os.path.join(result_dir_coal, "rawdata", "text")
+    coal_sql_dir    = os.path.join(result_dir_coal, "rawdata", "sql")
+    coal_heatmap_dir = os.path.join(result_dir_coal, "rawdata", "heatmap", benchmark)
+    coal_pw_dir     = os.path.join(result_dir_coal, "rawdata", "per_window")
+    os.makedirs(coal_text_dir,    exist_ok=True)
+    os.makedirs(coal_sql_dir,     exist_ok=True)
+    os.makedirs(coal_heatmap_dir, exist_ok=True)
+    os.makedirs(coal_pw_dir,      exist_ok=True)
 
-    motiv_dir = os.path.join(sample_dir, "motivation")
-    os.makedirs(motiv_dir, exist_ok=True)
-    motiv_sh_path = os.path.join(motiv_dir, f"run_{benchmark}_motivation.sh")
+    coal_dir = os.path.join(sample_dir, "coalescability")
+    os.makedirs(coal_dir, exist_ok=True)
+    coal_sh_path = os.path.join(coal_dir, f"run_{benchmark}_coalescability.sh")
 
-    with open(motiv_sh_path, "w") as f:
-        out_txt = os.path.join(motiv_text_dir, f"{benchmark}_motivation.txt")
-        out_sql = os.path.join(motiv_sql_dir,  f"{benchmark}_motivation.sqlite3")
+    # 64 MB footprint 용 인자 (main 의 절반 정도 크기). Coalescability
+    # heatmap 시각화 목적상 대표 access pattern 만 포착되면 충분함.
+    bench_args_coal = bench_args_map_coal.get(benchmark, bench_args)
+
+    with open(coal_sh_path, "w") as f:
+        out_txt     = os.path.join(coal_text_dir,    f"{benchmark}_coalescability.txt")
+        out_sql     = os.path.join(coal_sql_dir,     f"{benchmark}_coalescability.sqlite3")
+        out_pw_csv  = os.path.join(coal_pw_dir,      f"{benchmark}_coalescability_per_window.csv")
 
         f.write("#!/bin/bash\n\n")
-        f.write(f"cd {motiv_dir}\n\n")
+        f.write(f"cd {coal_dir}\n\n")
         f.write(f"../{benchmark} \\\n")
         f.write("    -timing \\\n")
         f.write("    -unified-gpus=1,2,3,4,5 \\\n")
         f.write("    -use-unified-memory \\\n")
-        f.write("    -page-migration-policy=AccessCounter \\\n")
+        # CD_0 (64B baseline): no aggregation, optdirectory observes raw
+        # access pattern. Heatmap is workload-characteristic and independent
+        # of which directory variant we run alongside.
         f.write("    -coherence-directory=CoherenceDirectory \\\n")
         f.write("    -coherence-unit-size=0 \\\n")
-        f.write("    -ideal-directory=true \\\n")
         f.write("    -log2-page-size=12 \\\n")
-        f.write(f"    {bench_args} \\\n")
+        f.write(f"    {bench_args_coal} \\\n")
+        # Sharer heatmap (RLE-compressed per-window dump)
+        f.write("    -coalescability-heatmap \\\n")
+        f.write(f"    -coalescability-heatmap-dir={coal_heatmap_dir} \\\n")
+        # -coalescability-heatmap implies -per-window-snapshot; supply the
+        # window-instructions and per-window output path explicitly so the
+        # CSV ends up in our coalescability tree.
+        f.write(f"    -window-instructions={PW_WINDOW_INST} \\\n")
+        f.write(f"    -per-window-output={out_pw_csv} \\\n")
         f.write("    -report-all \\\n")
-        f.write(f"    > {out_txt}\n\n")
-        f.write("# SQLite 이동\n")
+        f.write(f"    {f'> {out_txt}' if SAVE_STDOUT else STDOUT_REDIRECT}\n\n")
+        f.write("# 결과 파일(SQLite) 이동 및 이름 변경\n")
         f.write(f"mv akita_sim_*.sqlite3 {out_sql} 2>/dev/null\n\n")
-        f.write("# Coalescability CSV 수집: GPU별 파일 → benchmark 이름 포함 경로로 이동\n")
-        f.write("for csv_file in motivation_coalescability_GPU*.csv motivation_cumulative_GPU*.csv; do\n")
-        f.write(f"    [ -f \"$csv_file\" ] && mv \"$csv_file\" \"{motiv_csv_dir}/{benchmark}_$csv_file\"\n")
-        f.write("done\n\n")
 
-    os.chmod(motiv_sh_path, 0o744)
-    all_benchmark_scripts[benchmark].append(("motivation", motiv_sh_path))
-    all_dir_scripts.setdefault("motivation", []).append((benchmark, motiv_sh_path))
+    os.chmod(coal_sh_path, 0o744)
+    all_benchmark_scripts[benchmark].append(("coalescability", coal_sh_path))
+    all_dir_scripts.setdefault("coalescability", []).append((benchmark, coal_sh_path))
 
     # ---------------------------------------------------------
     # [7] 벤치마크별 마스터 스크립트 생성 (최대 4개 병렬)
@@ -356,7 +660,8 @@ print(f"Results will be collected in:\n"
       f"  - {os.path.join(results_base, 'REC', 'rawdata')}\n"
       f"  - {os.path.join(results_base, 'HMG', 'rawdata')}\n"
       f"  - {os.path.join(results_base, 'CD', 'rawdata')}\n"
-      f"  - {os.path.join(results_base, 'motivation', 'rawdata')} (coalescability CSVs)")
+      f"  - {os.path.join(results_base, 'motivation', 'rawdata')} (ideal 실험 결과 복사)\n"
+      f"  - {os.path.join(results_base, 'coalescability', 'rawdata')} (sharer heatmap RLE)")
 
 # ---------------------------------------------------------
 # directory별 마스터 스크립트 생성 (최대 4개 병렬)
@@ -401,40 +706,6 @@ with open(master_sh_path, "w") as f:
 
 os.chmod(master_sh_path, 0o744)
 
-# ---------------------------------------------------------
-# motivation 전용 마스터 스크립트 생성 (벤치마크 병렬 실행)
-#   저장 위치: script/run_motivation_all.sh
-#   목적: ideal directory coalescability 실험만 단독으로 실행
-# ---------------------------------------------------------
-motiv_master_sh_path = os.path.join(current_dir, "run_motivation_all.sh")
-motiv_bench_scripts  = all_dir_scripts.get("motivation", [])
-
-with open(motiv_master_sh_path, "w") as f:
-    f.write("#!/bin/bash\n")
-    f.write("# Motivation experiment: ideal directory coalescability measurement\n")
-    f.write("# 각 벤치마크 종료 후 CSV를 results/motivation/rawdata/csv/ 에 자동 저장\n\n")
-    f.write("MAX_PARALLEL=4\n\n")
-    f.write("trap 'echo \"중단 중...\"; kill 0; exit 1' INT TERM\n\n")
-    f.write("run_bg() {\n")
-    f.write("    local benchmark=$1\n")
-    f.write("    local script_path=$2\n")
-    f.write("    echo \"  [motivation][${benchmark}] 실행 중...\"\n")
-    f.write("    bash \"${script_path}\" &\n")
-    f.write("    while [ \"$(jobs -rp | wc -l)\" -ge \"${MAX_PARALLEL}\" ]; do\n")
-    f.write("        wait -n 2>/dev/null || wait\n")
-    f.write("    done\n")
-    f.write("}\n\n")
-    f.write("echo \"=== motivation (ideal directory) 실험 시작 ===\"\n")
-    for bench, script_path in motiv_bench_scripts:
-        f.write(f"run_bg \"{bench}\" \"{script_path}\"\n")
-    f.write("wait\n")
-    f.write("echo \"=== motivation 실험 완료 ===\"\n")
-    csv_out = os.path.join(results_base, "motivation", "rawdata", "csv")
-    f.write(f"echo \"CSV 결과 위치: {csv_out}/\"\n")
-
-os.chmod(motiv_master_sh_path, 0o744)
-
 print(f"\nGlobal master      : {master_sh_path}")
-print(f"Motivation master  : {motiv_master_sh_path}  ({len(motiv_bench_scripts)} benchmarks)")
 print(f"Workload masters   : {len(all_workload_masters)} files  →  {workload_master_dir}/")
 print(f"Directory masters  : {len(all_dir_scripts)} files  →  {directory_master_dir}/")

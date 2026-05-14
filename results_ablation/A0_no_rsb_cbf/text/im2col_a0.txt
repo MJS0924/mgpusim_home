@@ -1,0 +1,3767 @@
+Monitoring simulation with http://localhost:33799
+Build Timing Platform
+[MMU Builder]	MMU built with PageMigrationPolicy=0
+[Driver Builder]	Driver built with PageMigrationPolicy=0
+[r9nano Builder]	Creating GPU Builder with log2CacheLineSize 6, log2PageSize 12 coherenceDirectory 2.
+
+Create GPU 1
+[Directory]	Build new coherence directory: 5 banks, [32 64 128 256 512] sets, 8 ways
+[GMMU Builder]	GPU 1 GMMU built with PageMigrationPolicy=0
+
+Create GPU 2
+[Directory]	Build new coherence directory: 5 banks, [32 64 128 256 512] sets, 8 ways
+[GMMU Builder]	GPU 2 GMMU built with PageMigrationPolicy=0
+
+Create GPU 3
+[Directory]	Build new coherence directory: 5 banks, [32 64 128 256 512] sets, 8 ways
+[GMMU Builder]	GPU 3 GMMU built with PageMigrationPolicy=0
+
+Create GPU 4
+[Directory]	Build new coherence directory: 5 banks, [32 64 128 256 512] sets, 8 ways
+[GMMU Builder]	GPU 4 GMMU built with PageMigrationPolicy=0
+
+Create GPU 5
+[Directory]	Build new coherence directory: 5 banks, [32 64 128 256 512] sets, 8 ways
+[GMMU Builder]	GPU 5 GMMU built with PageMigrationPolicy=0
+[MemoryAllocator]	1555200 Byte Request
+			Allocating 380 pages in 2MB RR chunks across GPUs
+[Driver DEBUF 1]	queue len: 1, 2ndQueue len: 0
+[Driver DEBUF 3]	queue len: 1, 2ndQueue len: 0
+[Driver DEBUF 4]	queue len: 1, 2ndQueue len: 0
+[Driver.MemCpy]	Append awaitingReqs to requestsToSend
+[Driver] Processing MemCopyH2DCommand
+[Driver.MemCpy]	Append awaitingReqs to requestsToSend
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[Warning]	No More Event: 0 0
+[Driver DEBUF 5]	Engine stops running
+[MemoryAllocator]	13841712 Byte Request
+			Allocating 3380 pages in 2MB RR chunks across GPUs
+Im2Col input [1 3 360 360], kernel [3 3], stride [1 1], padding [0 0], dilation [1 1], output [27 128164]
+[MemoryAllocator]	1376 Byte Request
+			Allocating 1 pages for pid 1 on device 1
+[MemoryAllocator]	120 Byte Request
+			Allocating 1 pages for pid 1 on device 1
+[MemoryAllocator]	64 Byte Request
+			Allocating 1 pages for pid 1 on device 1
+[MemoryAllocator]	1376 Byte Request
+			Allocating 1 pages for pid 1 on device 2
+[MemoryAllocator]	120 Byte Request
+			Allocating 1 pages for pid 1 on device 2
+[MemoryAllocator]	64 Byte Request
+			Allocating 1 pages for pid 1 on device 2
+[MemoryAllocator]	1376 Byte Request
+			Allocating 1 pages for pid 1 on device 3
+[MemoryAllocator]	120 Byte Request
+			Allocating 1 pages for pid 1 on device 3
+[MemoryAllocator]	64 Byte Request
+			Allocating 1 pages for pid 1 on device 3
+[MemoryAllocator]	1376 Byte Request
+			Allocating 1 pages for pid 1 on device 4
+[MemoryAllocator]	120 Byte Request
+			Allocating 1 pages for pid 1 on device 4
+[MemoryAllocator]	64 Byte Request
+			Allocating 1 pages for pid 1 on device 4
+[MemoryAllocator]	1376 Byte Request
+			Allocating 1 pages for pid 1 on device 5
+[MemoryAllocator]	120 Byte Request
+			Allocating 1 pages for pid 1 on device 5
+[MemoryAllocator]	64 Byte Request
+			Allocating 1 pages for pid 1 on device 5
+[Driver DEBUF 1]	queue len: 1, 2ndQueue len: 0
+[Driver DEBUF 3]	queue len: 1, 2ndQueue len: 0
+[Driver DEBUF 4]	queue len: 1, 2ndQueue len: 0
+[Driver] Processing MemCopyH2DCommand
+[Driver.MemCpy]	Append awaitingReqs to requestsToSend
+[CP 1]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[1].DMA]	Received MemCopyH2DReq
+[Driver] Processing MemCopyH2DCommand
+[Driver.MemCpy]	Append awaitingReqs to requestsToSend
+[CP 1]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[1].DMA]	Received MemCopyH2DReq
+[Driver] Processing MemCopyH2DCommand
+[Driver.MemCpy]	Append awaitingReqs to requestsToSend
+[CP 1]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[1].DMA]	Received MemCopyH2DReq
+[Driver] Processing MemCopyH2DCommand
+[Driver.MemCpy]	Append awaitingReqs to requestsToSend
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[Driver] Processing MemCopyH2DCommand
+[Driver.MemCpy]	Append awaitingReqs to requestsToSend
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[Driver] Processing MemCopyH2DCommand
+[Driver.MemCpy]	Append awaitingReqs to requestsToSend
+[CP 2]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[2].DMA]	Received MemCopyH2DReq
+[Driver] Processing MemCopyH2DCommand
+[Driver.MemCpy]	Append awaitingReqs to requestsToSend
+[CP 3]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[3].DMA]	Received MemCopyH2DReq
+[Driver] Processing MemCopyH2DCommand
+[Driver.MemCpy]	Append awaitingReqs to requestsToSend
+[CP 3]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[3].DMA]	Received MemCopyH2DReq
+[Driver] Processing MemCopyH2DCommand
+[Driver.MemCpy]	Append awaitingReqs to requestsToSend
+[CP 3]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[3].DMA]	Received MemCopyH2DReq
+[Driver] Processing MemCopyH2DCommand
+[Driver.MemCpy]	Append awaitingReqs to requestsToSend
+[CP 4]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[4].DMA]	Received MemCopyH2DReq
+[Driver] Processing MemCopyH2DCommand
+[Driver.MemCpy]	Append awaitingReqs to requestsToSend
+[CP 4]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[4].DMA]	Received MemCopyH2DReq
+[Driver] Processing MemCopyH2DCommand
+[Driver.MemCpy]	Append awaitingReqs to requestsToSend
+[CP 4]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[4].DMA]	Received MemCopyH2DReq
+[Driver] Processing MemCopyH2DCommand
+[Driver.MemCpy]	Append awaitingReqs to requestsToSend
+[CP 5]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[5].DMA]	Received MemCopyH2DReq
+[Driver] Processing MemCopyH2DCommand
+[Driver.MemCpy]	Append awaitingReqs to requestsToSend
+[CP 5]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[5].DMA]	Received MemCopyH2DReq
+[Driver] Processing MemCopyH2DCommand
+[Driver.MemCpy]	Append awaitingReqs to requestsToSend
+[CP 5]	Received MemCopyH2DReq
+		Send request to DMA
+[GPU[5].DMA]	Received MemCopyH2DReq
+
+======================================================================================
+[Driver]	Start Page Migration VPN 855000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 855000 
+[Driver]	Send Migration Req(10002c000 -> 30046a000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10002c000 -> 30046a000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 855000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 8d2000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 8d2000 
+[Driver]	Send Migration Req(100045000 -> 30046b000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100045000 -> 30046b000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 8d2000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 7d8000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 7d8000 
+[Driver]	Send Migration Req(100013000 -> 30046c000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100013000 -> 30046c000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 7d8000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 954000 from GPU 1 to GPU 4
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 954000 
+[Driver]	Send Migration Req(10005f000 -> 40039e000) to GPU[4].CommandProcessor.ToDriver
+[PMC 4]	Process Page Migration Req From Ctrl Port: 10005f000 -> 40039e000
+		Sent data pull req to remote PMC: len 64
+[PMC 4]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 954000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 7dd000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 7dd000 
+[Driver]	Send Migration Req(100014000 -> 30046d000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100014000 -> 30046d000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 7dd000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 85a000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 85a000 
+[Driver]	Send Migration Req(10002d000 -> 30046e000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10002d000 -> 30046e000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 85a000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 8d7000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 8d7000 
+[Driver]	Send Migration Req(100046000 -> 30046f000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100046000 -> 30046f000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 8d7000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 8dc000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 8dc000 
+[Driver]	Send Migration Req(100047000 -> 300470000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100047000 -> 300470000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 8dc000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 85f000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 85f000 
+[Driver]	Send Migration Req(10002e000 -> 300471000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10002e000 -> 300471000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 85f000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 7e2000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 7e2000 
+[Driver]	Send Migration Req(100015000 -> 300472000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100015000 -> 300472000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 7e2000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 959000 from GPU 1 to GPU 4
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 959000 
+[Driver]	Send Migration Req(100060000 -> 40039f000) to GPU[4].CommandProcessor.ToDriver
+[PMC 4]	Process Page Migration Req From Ctrl Port: 100060000 -> 40039f000
+		Sent data pull req to remote PMC: len 64
+[PMC 4]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 959000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 8e1000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 8e1000 
+[Driver]	Send Migration Req(100048000 -> 300473000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100048000 -> 300473000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 8e1000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 864000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 864000 
+[Driver]	Send Migration Req(10002f000 -> 300474000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10002f000 -> 300474000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 864000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 7e7000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 7e7000 
+[Driver]	Send Migration Req(100016000 -> 300475000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100016000 -> 300475000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 7e7000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 95e000 from GPU 1 to GPU 4
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 95e000 
+[Driver]	Send Migration Req(100061000 -> 4003a0000) to GPU[4].CommandProcessor.ToDriver
+[PMC 4]	Process Page Migration Req From Ctrl Port: 100061000 -> 4003a0000
+		Sent data pull req to remote PMC: len 64
+[PMC 4]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 95e000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 7ec000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 7ec000 
+[Driver]	Send Migration Req(100017000 -> 300476000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100017000 -> 300476000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 7ec000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 8e6000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 8e6000 
+[Driver]	Send Migration Req(100049000 -> 300477000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100049000 -> 300477000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 8e6000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 869000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 869000 
+[Driver]	Send Migration Req(100030000 -> 300478000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100030000 -> 300478000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 869000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 963000 from GPU 1 to GPU 4
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 963000 
+[Driver]	Send Migration Req(100062000 -> 4003a1000) to GPU[4].CommandProcessor.ToDriver
+[PMC 4]	Process Page Migration Req From Ctrl Port: 100062000 -> 4003a1000
+		Sent data pull req to remote PMC: len 64
+[PMC 4]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 963000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 8eb000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 8eb000 
+[Driver]	Send Migration Req(10004a000 -> 300479000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10004a000 -> 300479000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 8eb000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 7f1000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 7f1000 
+[Driver]	Send Migration Req(100018000 -> 30047a000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100018000 -> 30047a000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 7f1000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 86e000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 86e000 
+[Driver]	Send Migration Req(100031000 -> 30047b000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100031000 -> 30047b000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 86e000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 968000 from GPU 1 to GPU 4
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 968000 
+[Driver]	Send Migration Req(100063000 -> 4003a2000) to GPU[4].CommandProcessor.ToDriver
+[PMC 4]	Process Page Migration Req From Ctrl Port: 100063000 -> 4003a2000
+		Sent data pull req to remote PMC: len 64
+[PMC 4]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 968000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 7f6000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 7f6000 
+[Driver]	Send Migration Req(100019000 -> 30047c000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100019000 -> 30047c000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 7f6000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 873000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 873000 
+[Driver]	Send Migration Req(100032000 -> 30047d000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100032000 -> 30047d000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 873000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 8f0000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 8f0000 
+[Driver]	Send Migration Req(10004b000 -> 30047e000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10004b000 -> 30047e000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 8f0000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 8f5000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 8f5000 
+[Driver]	Send Migration Req(10004c000 -> 30047f000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10004c000 -> 30047f000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 8f5000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 878000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 878000 
+[Driver]	Send Migration Req(100033000 -> 300480000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100033000 -> 300480000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 878000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 7fb000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 7fb000 
+[Driver]	Send Migration Req(10001a000 -> 300481000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10001a000 -> 300481000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 7fb000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 77e000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 77e000 
+[Driver]	Send Migration Req(100001000 -> 300482000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100001000 -> 300482000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 77e000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 800000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 800000 
+[Driver]	Send Migration Req(10001b000 -> 300483000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10001b000 -> 300483000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 800000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 87d000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 87d000 
+[Driver]	Send Migration Req(100034000 -> 300484000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100034000 -> 300484000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 87d000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 8fa000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 8fa000 
+[Driver]	Send Migration Req(10004d000 -> 300485000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10004d000 -> 300485000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 8fa000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 783000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 783000 
+[Driver]	Send Migration Req(100002000 -> 300486000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100002000 -> 300486000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 783000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 96d000 from GPU 1 to GPU 4
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 96d000 
+[Driver]	Send Migration Req(100064000 -> 4003a3000) to GPU[4].CommandProcessor.ToDriver
+[PMC 4]	Process Page Migration Req From Ctrl Port: 100064000 -> 4003a3000
+		Sent data pull req to remote PMC: len 64
+[PMC 4]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 96d000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 972000 from GPU 1 to GPU 4
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 972000 
+[Driver]	Send Migration Req(100065000 -> 4003a4000) to GPU[4].CommandProcessor.ToDriver
+[PMC 4]	Process Page Migration Req From Ctrl Port: 100065000 -> 4003a4000
+		Sent data pull req to remote PMC: len 64
+[PMC 4]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 972000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 8ff000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 8ff000 
+[Driver]	Send Migration Req(10004e000 -> 300487000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10004e000 -> 300487000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 8ff000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 805000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 805000 
+[Driver]	Send Migration Req(10001c000 -> 300488000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10001c000 -> 300488000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 805000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 788000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 788000 
+[Driver]	Send Migration Req(100003000 -> 300489000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100003000 -> 300489000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 788000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 977000 from GPU 1 to GPU 4
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 977000 
+[Driver]	Send Migration Req(100066000 -> 4003a5000) to GPU[4].CommandProcessor.ToDriver
+[PMC 4]	Process Page Migration Req From Ctrl Port: 100066000 -> 4003a5000
+		Sent data pull req to remote PMC: len 64
+[PMC 4]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 977000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 882000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 882000 
+[Driver]	Send Migration Req(100035000 -> 30048a000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100035000 -> 30048a000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 882000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+[GPU[5].CommandProcessor]	Kernel Complete
+
+======================================================================================
+[Driver]	Start Page Migration VPN 904000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 904000 
+[Driver]	Send Migration Req(10004f000 -> 30048b000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10004f000 -> 30048b000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 904000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 80a000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 80a000 
+[Driver]	Send Migration Req(10001d000 -> 30048c000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10001d000 -> 30048c000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 80a000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 78d000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 78d000 
+[Driver]	Send Migration Req(100004000 -> 30048d000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100004000 -> 30048d000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 78d000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 887000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 887000 
+[Driver]	Send Migration Req(100036000 -> 30048e000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100036000 -> 30048e000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 887000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 792000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 792000 
+[Driver]	Send Migration Req(100005000 -> 30048f000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100005000 -> 30048f000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 792000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 80f000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 80f000 
+[Driver]	Send Migration Req(10001e000 -> 300490000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10001e000 -> 300490000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 80f000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 88c000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 88c000 
+[Driver]	Send Migration Req(100037000 -> 300491000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100037000 -> 300491000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 88c000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 909000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 909000 
+[Driver]	Send Migration Req(100050000 -> 300492000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100050000 -> 300492000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 909000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 814000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 814000 
+[Driver]	Send Migration Req(10001f000 -> 300493000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10001f000 -> 300493000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 814000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 891000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 891000 
+[Driver]	Send Migration Req(100038000 -> 300494000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100038000 -> 300494000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 891000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 90e000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 90e000 
+[Driver]	Send Migration Req(100051000 -> 300495000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100051000 -> 300495000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 90e000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 797000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 797000 
+[Driver]	Send Migration Req(100006000 -> 300496000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100006000 -> 300496000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 797000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 97c000 from GPU 1 to GPU 4
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 97c000 
+[Driver]	Send Migration Req(100067000 -> 4003a6000) to GPU[4].CommandProcessor.ToDriver
+[PMC 4]	Process Page Migration Req From Ctrl Port: 100067000 -> 4003a6000
+		Sent data pull req to remote PMC: len 64
+[PMC 4]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 97c000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 79c000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 79c000 
+[Driver]	Send Migration Req(100007000 -> 300497000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100007000 -> 300497000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 79c000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 819000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 819000 
+[Driver]	Send Migration Req(100020000 -> 300498000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100020000 -> 300498000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 819000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 896000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 896000 
+[Driver]	Send Migration Req(100039000 -> 300499000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100039000 -> 300499000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 896000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 913000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 913000 
+[Driver]	Send Migration Req(100052000 -> 30049a000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100052000 -> 30049a000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 913000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 918000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 918000 
+[Driver]	Send Migration Req(100053000 -> 30049b000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100053000 -> 30049b000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 918000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 81e000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 81e000 
+[Driver]	Send Migration Req(100021000 -> 30049c000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100021000 -> 30049c000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 81e000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 7a1000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 7a1000 
+[Driver]	Send Migration Req(100008000 -> 30049d000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100008000 -> 30049d000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 7a1000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 89b000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 89b000 
+[Driver]	Send Migration Req(10003a000 -> 30049e000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10003a000 -> 30049e000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 89b000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 91d000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 91d000 
+[Driver]	Send Migration Req(100054000 -> 30049f000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100054000 -> 30049f000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 91d000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 7a6000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 7a6000 
+[Driver]	Send Migration Req(100009000 -> 3004a0000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100009000 -> 3004a0000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 7a6000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 823000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 823000 
+[Driver]	Send Migration Req(100022000 -> 3004a1000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100022000 -> 3004a1000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 823000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 8a0000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 8a0000 
+[Driver]	Send Migration Req(10003b000 -> 3004a2000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10003b000 -> 3004a2000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 8a0000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 828000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 828000 
+[Driver]	Send Migration Req(100023000 -> 3004a3000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100023000 -> 3004a3000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 828000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 8a5000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 8a5000 
+[Driver]	Send Migration Req(10003c000 -> 3004a4000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10003c000 -> 3004a4000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 8a5000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 922000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 922000 
+[Driver]	Send Migration Req(100055000 -> 3004a5000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100055000 -> 3004a5000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 922000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 7ab000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 7ab000 
+[Driver]	Send Migration Req(10000a000 -> 3004a6000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10000a000 -> 3004a6000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 7ab000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 7b0000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 7b0000 
+[Driver]	Send Migration Req(10000b000 -> 3004a7000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10000b000 -> 3004a7000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 7b0000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 82d000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 82d000 
+[Driver]	Send Migration Req(100024000 -> 3004a8000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100024000 -> 3004a8000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 82d000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 8aa000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 8aa000 
+[Driver]	Send Migration Req(10003d000 -> 3004a9000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10003d000 -> 3004a9000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 8aa000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 927000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 927000 
+[Driver]	Send Migration Req(100056000 -> 3004aa000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100056000 -> 3004aa000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 927000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 832000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 832000 
+[Driver]	Send Migration Req(100025000 -> 3004ab000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100025000 -> 3004ab000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 832000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 92c000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 92c000 
+[Driver]	Send Migration Req(100057000 -> 3004ac000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100057000 -> 3004ac000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 92c000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 8af000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 8af000 
+[Driver]	Send Migration Req(10003e000 -> 3004ad000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10003e000 -> 3004ad000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 8af000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 7b5000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 7b5000 
+[Driver]	Send Migration Req(10000c000 -> 3004ae000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10000c000 -> 3004ae000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 7b5000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 931000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 931000 
+[Driver]	Send Migration Req(100058000 -> 3004af000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100058000 -> 3004af000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 931000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 837000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 837000 
+[Driver]	Send Migration Req(100026000 -> 3004b0000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100026000 -> 3004b0000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 837000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 7ba000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 7ba000 
+[Driver]	Send Migration Req(10000d000 -> 3004b1000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10000d000 -> 3004b1000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 7ba000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 8b4000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 8b4000 
+[Driver]	Send Migration Req(10003f000 -> 3004b2000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10003f000 -> 3004b2000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 8b4000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 936000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 936000 
+[Driver]	Send Migration Req(100059000 -> 3004b3000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100059000 -> 3004b3000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 936000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 7bf000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 7bf000 
+[Driver]	Send Migration Req(10000e000 -> 3004b4000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10000e000 -> 3004b4000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 7bf000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 83c000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 83c000 
+[Driver]	Send Migration Req(100027000 -> 3004b5000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100027000 -> 3004b5000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 83c000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 8b9000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 8b9000 
+[Driver]	Send Migration Req(100040000 -> 3004b6000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100040000 -> 3004b6000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 8b9000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 8be000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 8be000 
+[Driver]	Send Migration Req(100041000 -> 3004b7000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100041000 -> 3004b7000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 8be000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 93b000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 93b000 
+[Driver]	Send Migration Req(10005a000 -> 3004b8000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10005a000 -> 3004b8000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 93b000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 841000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 841000 
+[Driver]	Send Migration Req(100028000 -> 3004b9000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100028000 -> 3004b9000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 841000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 7c4000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 7c4000 
+[Driver]	Send Migration Req(10000f000 -> 3004ba000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10000f000 -> 3004ba000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 7c4000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 8c3000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 8c3000 
+[Driver]	Send Migration Req(100042000 -> 3004bb000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100042000 -> 3004bb000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 8c3000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 940000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 940000 
+[Driver]	Send Migration Req(10005b000 -> 3004bc000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10005b000 -> 3004bc000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 940000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 7c9000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 7c9000 
+[Driver]	Send Migration Req(100010000 -> 3004bd000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100010000 -> 3004bd000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 7c9000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 846000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 846000 
+[Driver]	Send Migration Req(100029000 -> 3004be000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100029000 -> 3004be000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 846000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 84b000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 84b000 
+[Driver]	Send Migration Req(10002a000 -> 3004bf000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10002a000 -> 3004bf000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 84b000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 8c8000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 8c8000 
+[Driver]	Send Migration Req(100043000 -> 3004c0000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100043000 -> 3004c0000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 8c8000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 945000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 945000 
+[Driver]	Send Migration Req(10005c000 -> 3004c1000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10005c000 -> 3004c1000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 945000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 7ce000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 7ce000 
+[Driver]	Send Migration Req(100011000 -> 3004c2000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100011000 -> 3004c2000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 7ce000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 7d3000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 7d3000 
+[Driver]	Send Migration Req(100012000 -> 3004c3000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100012000 -> 3004c3000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 7d3000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 850000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 850000 
+[Driver]	Send Migration Req(10002b000 -> 3004c4000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10002b000 -> 3004c4000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 850000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 8cd000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 8cd000 
+[Driver]	Send Migration Req(100044000 -> 3004c5000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 100044000 -> 3004c5000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 8cd000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 94a000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 94a000 
+[Driver]	Send Migration Req(10005d000 -> 3004c6000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10005d000 -> 3004c6000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 94a000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+
+======================================================================================
+[Driver]	Start Page Migration VPN 94f000 from GPU 1 to GPU 3
+======================================================================================
+
+[Driver]	Current Page Host GPU: 1
+[Driver]	Skip GPU Shoot Down Because of 1st touch
+[Driver]	Complete ShootDown
+		Initiate RDMA Drain
+[Driver]	Skip RDMA Drain Because of 1st touch
+[Driver]	Complete RDMA Drain
+		Prepare Migration Req to CP: 94f000 
+[Driver]	Send Migration Req(10005e000 -> 3004c7000) to GPU[3].CommandProcessor.ToDriver
+[PMC 3]	Process Page Migration Req From Ctrl Port: 10005e000 -> 3004c7000
+		Sent data pull req to remote PMC: len 64
+[PMC 3]	Sending migration complete rsp to CtrlPort
+[Driver]	Migration Complete
+		Prepare PTE Invalidation
+[CP 1]	Received PTE Invalidation Request VA 94f000, forward to GMMU
+[Driver]	Skip RDMA Restart
+[Driver]	Complete RDMA Restart
+			Send GPU Restart Req
+[Driver]	Skip GPU Restart Because of 1st touch
+[Driver]	Complete Migration
+[GPU[3].CommandProcessor]	Kernel Complete
+[GPU[4].CommandProcessor]	Kernel Complete
+[GPU[2].CommandProcessor]	Kernel Complete
+Kernel Im2Col, Start 0.0000725730, Virtual Time: 0.001435609, Real Time: 1h2m26.942352181s
+Simulation Terminate
+[Warning]	No More Event: 0 0
+[Driver DEBUF 5]	Engine stops running
+2026/04/30 15:17:46 /root/mgpusim_home/mgpusim/amd/samples/runner/runner.go:248: [runner] event-log written: promotions=75319 demotions=3 path=/workspace/mgpusim_home/results_ablation/A0_no_rsb_cbf/events/im2col_a0_events.parquet

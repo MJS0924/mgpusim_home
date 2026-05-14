@@ -1,0 +1,270 @@
+--- a/amd/timing/rdma/comp.go
++++ b/amd/timing/rdma/comp.go
+@@ -76,6 +76,28 @@
+ 	traceProcess bool
+ 	debugProcess bool
+ 	debugAddress uint64
++
++	// eventCounts replaces high-frequency tracing.AddTaskStep calls in
++	// recordMsgSend with in-memory counters to keep akita_sim_*.sqlite
++	// trace files small. report.go's eventCountsProvider reads this map
++	// at simulation end.
++	eventCounts map[string]uint64
++}
++
++func (c *Comp) incEvent(name string) {
++	if c.eventCounts == nil {
++		c.eventCounts = make(map[string]uint64)
++	}
++	c.eventCounts[name]++
++}
++
++// EventCounts returns a copy of the in-memory event counters.
++func (c *Comp) EventCounts() map[string]uint64 {
++	out := make(map[string]uint64, len(c.eventCounts))
++	for k, v := range c.eventCounts {
++		out[k] = v
++	}
++	return out
+ }
+ 
+ // SetLocalModuleFinder sets the table to lookup for local data.
+@@ -1198,6 +1220,6 @@
+ 	}
+ 
+ 	tracing.TraceReqReceive(req, c)
+-	tracing.AddTaskStep(req.Meta().ID, c, what)
++	c.incEvent(what)
+ 	tracing.TraceReqComplete(req, c)
+ }
+--- a/amd/samples/runner/runner.go
++++ b/amd/samples/runner/runner.go
+@@ -78,7 +78,8 @@
+ }
+ 
+ func (r *Runner) initSimulation() {
+-	builder := simulation.MakeBuilder()
++	builder := simulation.MakeBuilder().
++		WithTraceVisEnabled(*visTracing)
+ 
+ 	if *parallelFlag {
+ 		builder = builder.WithParallelEngine()
+--- a/amd/samples/runner/report.go
++++ b/amd/samples/runner/report.go
+@@ -82,6 +82,26 @@
+ 	tracer *tracing.StepCountTracer
+ }
+ 
++// eventCountsProvider is satisfied by Comp types that count events in-memory
++// (rdma.Comp, writebackcoh.Comp, superdirectory.Comp). When a component
++// implements it, report.go reads counts directly instead of querying the
++// trace-DB-backed StepCountTracer — this lets the simulator skip
++// tracing.AddTaskStep entirely for high-frequency events and keeps
++// akita_sim_*.sqlite small.
++type eventCountsProvider interface {
++	EventCounts() map[string]uint64
++}
++
++// stepCount returns the count for `name`, preferring the in-memory
++// EventCounts map when the comp exposes it, and falling back to the
++// trace-DB-backed StepCountTracer otherwise.
++func stepCount(comp tracing.NamedHookable, t *tracing.StepCountTracer, name string) uint64 {
++	if p, ok := comp.(eventCountsProvider); ok {
++		return p.EventCounts()[name]
++	}
++	return t.GetStepCount(name)
++}
++
+ // entryUtilProvider is satisfied by both REC.Comp and superdirectory.Comp,
+ // which accumulate eviction-time sub-entry utilization samples internally.
+ type entryUtilProvider interface {
+@@ -694,7 +714,7 @@
+ 		n := 1 << (r.log2BlockSize - 6)
+ 		for i := 0; i <= n; i++ {
+ 			what := fmt.Sprintf("Usage: %d/%d", i, n)
+-			count := tracer.tracer.GetStepCount(what)
++			count := stepCount(tracer.cache, tracer.tracer, what)
+ 
+ 			if count == 0 {
+ 				continue
+@@ -718,7 +738,7 @@
+ 		}
+ 
+ 		for _, s := range what {
+-			count := tracer.tracer.GetStepCount(s)
++			count := stepCount(tracer.cache, tracer.tracer, s)
+ 			if count == 0 {
+ 				continue
+ 			}
+@@ -735,19 +755,19 @@
+ 
+ func (r *reporter) reportCacheEvictions() {
+ 	for _, tracer := range r.cacheHitRateTracers {
+-		evb := tracer.tracer.GetStepCount("EvictValidBlock")
+-		eib := tracer.tracer.GetStepCount("EvictInvalidBlock")
+-		ivbWrite := tracer.tracer.GetStepCount("InvalidateValidBlock-Write")
+-		iibWrite := tracer.tracer.GetStepCount("InvalidateInvalidBlock-Write")
+-		ivbEvict := tracer.tracer.GetStepCount("InvalidateValidBlock-Evict")
+-		iibEvict := tracer.tracer.GetStepCount("InvalidateInvalidBlock-Evict")
++		evb := stepCount(tracer.cache, tracer.tracer, "EvictValidBlock")
++		eib := stepCount(tracer.cache, tracer.tracer, "EvictInvalidBlock")
++		ivbWrite := stepCount(tracer.cache, tracer.tracer, "InvalidateValidBlock-Write")
++		iibWrite := stepCount(tracer.cache, tracer.tracer, "InvalidateInvalidBlock-Write")
++		ivbEvict := stepCount(tracer.cache, tracer.tracer, "InvalidateValidBlock-Evict")
++		iibEvict := stepCount(tracer.cache, tracer.tracer, "InvalidateInvalidBlock-Evict")
+ 		ivb := ivbWrite + ivbEvict
+ 		iib := iibWrite + iibEvict
+-		prfSt := tracer.tracer.GetStepCount("PrefetchStart")
+-		prf := tracer.tracer.GetStepCount("Prefetch")
+-		evtPrf := tracer.tracer.GetStepCount("EvictAndPrefetch")
+-		prfDscHit := tracer.tracer.GetStepCount("PrefetchDiscard - Hit")
+-		prfDscBsy := tracer.tracer.GetStepCount("PrefetchDiscard - Busy")
++		prfSt := stepCount(tracer.cache, tracer.tracer, "PrefetchStart")
++		prf := stepCount(tracer.cache, tracer.tracer, "Prefetch")
++		evtPrf := stepCount(tracer.cache, tracer.tracer, "EvictAndPrefetch")
++		prfDscHit := stepCount(tracer.cache, tracer.tracer, "PrefetchDiscard - Hit")
++		prfDscBsy := stepCount(tracer.cache, tracer.tracer, "PrefetchDiscard - Busy")
+ 
+ 		total := evb + eib + ivb + iib + prf + evtPrf + prfDscHit + prfDscBsy
+ 		if total == 0 {
+@@ -845,20 +865,20 @@
+ 
+ func (r *reporter) reportCacheHitRate() {
+ 	for _, tracer := range r.cacheHitRateTracers {
+-		readHit := tracer.tracer.GetStepCount("read-hit")
+-		readMiss := tracer.tracer.GetStepCount("read-miss")
+-		readMSHRHit := tracer.tracer.GetStepCount("read-mshr-hit")
+-		remoteReadHit := tracer.tracer.GetStepCount("remote-read-hit")
+-		remoteReadMiss := tracer.tracer.GetStepCount("remote-read-miss")
+-		remoteReadMSHRHit := tracer.tracer.GetStepCount("remote-read-mshr-hit")
+-		writeHit := tracer.tracer.GetStepCount("write-hit")
+-		writeMiss := tracer.tracer.GetStepCount("write-miss")
+-		writeMSHRHit := tracer.tracer.GetStepCount("write-mshr-hit")
+-		remoteWriteHit := tracer.tracer.GetStepCount("remote-write-hit")
+-		remoteWriteMiss := tracer.tracer.GetStepCount("remote-write-miss")
+-		remoteWriteMSHRHit := tracer.tracer.GetStepCount("remote-write-mshr-hit")
+-		ToLocal := tracer.tracer.GetStepCount("ToLocal")
+-		ToRemote := tracer.tracer.GetStepCount("ToRemote")
++		readHit := stepCount(tracer.cache, tracer.tracer, "read-hit")
++		readMiss := stepCount(tracer.cache, tracer.tracer, "read-miss")
++		readMSHRHit := stepCount(tracer.cache, tracer.tracer, "read-mshr-hit")
++		remoteReadHit := stepCount(tracer.cache, tracer.tracer, "remote-read-hit")
++		remoteReadMiss := stepCount(tracer.cache, tracer.tracer, "remote-read-miss")
++		remoteReadMSHRHit := stepCount(tracer.cache, tracer.tracer, "remote-read-mshr-hit")
++		writeHit := stepCount(tracer.cache, tracer.tracer, "write-hit")
++		writeMiss := stepCount(tracer.cache, tracer.tracer, "write-miss")
++		writeMSHRHit := stepCount(tracer.cache, tracer.tracer, "write-mshr-hit")
++		remoteWriteHit := stepCount(tracer.cache, tracer.tracer, "remote-write-hit")
++		remoteWriteMiss := stepCount(tracer.cache, tracer.tracer, "remote-write-miss")
++		remoteWriteMSHRHit := stepCount(tracer.cache, tracer.tracer, "remote-write-mshr-hit")
++		ToLocal := stepCount(tracer.cache, tracer.tracer, "ToLocal")
++		ToRemote := stepCount(tracer.cache, tracer.tracer, "ToRemote")
+ 
+ 		totalTransaction := readHit + readMiss + remoteReadHit + remoteReadMiss + readMSHRHit + remoteReadMSHRHit +
+ 			writeHit + writeMiss + remoteWriteHit + remoteWriteMiss + writeMSHRHit + remoteWriteMSHRHit +
+@@ -969,14 +989,14 @@
+ 			r.dataRecorder.InsertData(tableName, metric{
+ 				Location: tracer.cache.Name(),
+ 				What:     what,
+-				Value:    float64(tracer.tracer.GetStepCount(what)),
++				Value:    float64(stepCount(tracer.cache, tracer.tracer, what)),
+ 				Unit:     "count",
+ 			})
+ 			what = "remote-read-miss-" + reason
+ 			r.dataRecorder.InsertData(tableName, metric{
+ 				Location: tracer.cache.Name(),
+ 				What:     what,
+-				Value:    float64(tracer.tracer.GetStepCount(what)),
++				Value:    float64(stepCount(tracer.cache, tracer.tracer, what)),
+ 				Unit:     "count",
+ 			})
+ 		}
+@@ -985,15 +1005,15 @@
+ 
+ func (r *reporter) reportCohDir() {
+ 	for _, tracer := range r.cohDirtracers {
+-		UpdateEntry := tracer.tracer.GetStepCount("UpdateEntry")
+-		InvalidateByEviction := tracer.tracer.GetStepCount("InvalidateByEviction")
+-		InvalidateByWrite := tracer.tracer.GetStepCount("InvalidateByWrite")
+-		InvalidateByPromotion := tracer.tracer.GetStepCount("InvalidateByPromotion")
+-		InvalidateByDemotion := tracer.tracer.GetStepCount("InvalidateByDemotion")
+-		ToLocalData := tracer.tracer.GetStepCount("ToLocalData")
+-		ToRemoteData := tracer.tracer.GetStepCount("ToRemoteData")
+-		FromLocal := tracer.tracer.GetStepCount("FromLocal")
+-		FromRemote := tracer.tracer.GetStepCount("FromRemote")
++		UpdateEntry := stepCount(tracer.cohDir, tracer.tracer, "UpdateEntry")
++		InvalidateByEviction := stepCount(tracer.cohDir, tracer.tracer, "InvalidateByEviction")
++		InvalidateByWrite := stepCount(tracer.cohDir, tracer.tracer, "InvalidateByWrite")
++		InvalidateByPromotion := stepCount(tracer.cohDir, tracer.tracer, "InvalidateByPromotion")
++		InvalidateByDemotion := stepCount(tracer.cohDir, tracer.tracer, "InvalidateByDemotion")
++		ToLocalData := stepCount(tracer.cohDir, tracer.tracer, "ToLocalData")
++		ToRemoteData := stepCount(tracer.cohDir, tracer.tracer, "ToRemoteData")
++		FromLocal := stepCount(tracer.cohDir, tracer.tracer, "FromLocal")
++		FromRemote := stepCount(tracer.cohDir, tracer.tracer, "FromRemote")
+ 
+ 		totalTransaction := UpdateEntry + InvalidateByEviction + InvalidateByWrite +
+ 			ToLocalData + ToRemoteData + FromLocal + FromRemote
+@@ -1072,11 +1092,11 @@
+ 		what3 := "InvalidateByPromotion"
+ 		what4 := "InvalidateByDemotion"
+ 		for bankID := 0; bankID < 5; bankID++ {
+-			UpdateEntry := tracer.tracer.GetStepCount(what0 + fmt.Sprintf(" - %d", bankID))
+-			InvalidateByEviction := tracer.tracer.GetStepCount(what1 + fmt.Sprintf(" - %d", bankID))
+-			InvalidateByWrite := tracer.tracer.GetStepCount(what2 + fmt.Sprintf(" - %d", bankID))
+-			InvalidateByPromotion := tracer.tracer.GetStepCount(what3 + fmt.Sprintf(" - %d", bankID))
+-			InvalidateByDemotion := tracer.tracer.GetStepCount(what4 + fmt.Sprintf(" - %d", bankID))
++			UpdateEntry := stepCount(tracer.cohDir, tracer.tracer, what0+fmt.Sprintf(" - %d", bankID))
++			InvalidateByEviction := stepCount(tracer.cohDir, tracer.tracer, what1+fmt.Sprintf(" - %d", bankID))
++			InvalidateByWrite := stepCount(tracer.cohDir, tracer.tracer, what2+fmt.Sprintf(" - %d", bankID))
++			InvalidateByPromotion := stepCount(tracer.cohDir, tracer.tracer, what3+fmt.Sprintf(" - %d", bankID))
++			InvalidateByDemotion := stepCount(tracer.cohDir, tracer.tracer, what4+fmt.Sprintf(" - %d", bankID))
+ 
+ 			totalTransaction := UpdateEntry + InvalidateByEviction + InvalidateByWrite
+ 
+@@ -1143,7 +1163,7 @@
+ 	for _, tracer := range r.cohDirtracers {
+ 		for n := 1; n <= 10; n++ {
+ 			what := fmt.Sprintf("BankChecked - %d", n)
+-			count := tracer.tracer.GetStepCount(what)
++			count := stepCount(tracer.cohDir, tracer.tracer, what)
+ 			if count == 0 {
+ 				continue
+ 			}
+@@ -1160,7 +1180,7 @@
+ 	for _, tracer := range r.cohDirtracers {
+ 		for n := 1; n <= 10; n++ {
+ 			what := fmt.Sprintf("GetBankCount - %d", n)
+-			count := tracer.tracer.GetStepCount(what)
++			count := stepCount(tracer.cohDir, tracer.tracer, what)
+ 			if count == 0 {
+ 				continue
+ 			}
+@@ -1300,15 +1320,23 @@
+ 
+ func (r *reporter) reportTraffic() {
+ 	for _, tracer := range r.trafficTracer {
+-		stepNames := tracer.tracer.GetStepNames()
+-
+-		for _, s := range stepNames {
+-			count := tracer.tracer.GetStepCount(s)
++		if p, ok := tracer.rdma.(eventCountsProvider); ok {
++			for name, count := range p.EventCounts() {
++				r.dataRecorder.InsertData(cohDirTable, metric{
++					Location: tracer.rdma.Name(),
++					What:     name,
++					Value:    float64(count),
++					Unit:     "count",
++				})
++			}
++			continue
++		}
+ 
++		for _, s := range tracer.tracer.GetStepNames() {
+ 			r.dataRecorder.InsertData(cohDirTable, metric{
+ 				Location: tracer.rdma.Name(),
+ 				What:     s,
+-				Value:    float64(count),
++				Value:    float64(tracer.tracer.GetStepCount(s)),
+ 				Unit:     "count",
+ 			})
+ 		}

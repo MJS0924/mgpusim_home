@@ -1,9 +1,9 @@
 #!/bin/bash
-# 중단된 실험으로 생긴 akita_sim_*.sqlite3 임시 파일을 일괄 삭제합니다.
+# 중단된 실험으로 생긴 akita_sim_*.sqlite3 및 akita_sim_*.sqlite3-journal 임시 파일을 일괄 삭제합니다.
 
 SAMPLES_DIR="$(cd "$(dirname "$0")/.." && pwd)/mgpusim/amd/samples"
 
-mapfile -t files < <(find "$SAMPLES_DIR" -name "akita_sim_*.sqlite3" 2>/dev/null)
+mapfile -t files < <(find "$SAMPLES_DIR" \( -name "akita_sim_*.sqlite3" -o -name "akita_sim_*.sqlite3-journal" \) 2>/dev/null)
 
 if [ ${#files[@]} -eq 0 ]; then
     echo "삭제할 임시 파일이 없습니다."

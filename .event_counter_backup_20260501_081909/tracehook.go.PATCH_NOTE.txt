@@ -1,0 +1,9 @@
+=== tracehook.go modification notes ===
+Original CollectTrace at the top of /root/mgpusim_home/akita/tracing/tracehook.go
+did NOT have a nil-check. The patch adds:
+
+    if tracer == nil {
+        return
+    }
+
+To revert: delete the early-return block (lines after the doc comment, before `hooks := ...`).
