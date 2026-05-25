@@ -30,41 +30,68 @@ import os
 benchmarks = [
     'fir',
     # 'fft',
-    # 'atax',
-    # 'bfs',
+    'atax',
+    'bfs',
     # 'simpleconvolution',
     'im2col',
-    # 'kmeans',
+    'kmeans',
     'matrixmultiplication',
     'matrixtranspose',
+    'nbody',
+    'floydwarshall',
     'pagerank',
     'spmv',
     'stencil2d',
 
     # # DNN layer benchmarks
-    'relu',
+    # 'relu',
     'conv2d',
 
     # # DNN training benchmarks (dataset 없음: xor 만 활성화)
-    'xor',
+    # 'xor',
     'lenet',
     'minerva',
-    'vgg16',
+    # 'vgg16',
 ]
 
 # Per-window snapshot 을 활성화할 workload 목록 (§3.3 R-sweep 대상)
 PW_BENCHMARKS = {
     'fir',
+    'bfs',
     'im2col',
+    'kmeans',
     'matrixmultiplication',
     'matrixtranspose',
+    'nbody',
+    'floydwarshall',
     'pagerank',
     'spmv',
     'stencil2d',
     'relu',
-    'conv2d'
+    'conv2d',
+    'xor',
+    'lenet',
+    'minerva',
+    'vgg16',
 }
 PW_WINDOW_INST = 50000
+
+# DNN training workload는 시뮬레이션 비용이 매우 커서 CD fine-grained
+# sweep (unit-size 1/2/4/6/8) 와 coalescability heatmap을 생략한다.
+# 마스터 스크립트 (`run_{benchmark}_all.sh`) 에는 아래 6개 config 만
+# 등록된다. 개별 sub-script (CD_1.sh 등) 와 wrapper (run_{wl}_CD.sh)
+# 자체는 그대로 생성되므로 필요 시 수동 실행 가능.
+# relu / conv2d / xor 는 DNN layer/소형 워크로드이므로 full sweep 유지.
+DNN_BENCHMARKS = {'lenet', 'minerva'}
+DNN_ALLOWED_CONFIGS = {
+    'superdirectory',
+    'superdirectory_FE',
+    'REC_default',
+    'REC_halfset',
+    'HMG',
+    'CD_0',
+    'CD_ideal',
+}
 
 # stdout 저장 여부. False면 text 파일로도 저장하지 않고 터미널에도 출력하지 않음.
 # (sqlite은 그대로 저장되므로 sqlite 기반 분석은 정상 동작)
@@ -88,6 +115,8 @@ STDOUT_REDIRECT = "> /dev/null"
 #   im2col    : 24HW + 216(H-2)(W-2) (input float64 + im2col output)
 #   kmeans    : (2pf + p + cf) × 4
 #   transpose : 8W² (input + output float32, uint32)
+#   nbody     : 64P (4 unified buffers × 4 float32-vec × P particles)
+#   floyd     : 8N² (2 uint32 matrices: dist + path)
 #   pagerank  : (3N + 2 × N²×sparsity) × 4 ≈ 8 × N² × sparsity
 #   spmv      : (2 × Dim²×s + 3 × Dim + 1) × 4 ≈ 8 × Dim² × s
 #   stencil2d : 2 × R × pad16(C) × 4 ≈ 8RC
@@ -103,6 +132,8 @@ STDOUT_REDIRECT = "> /dev/null"
 #   im2col    : 24 × 520² + 216 × 518²      ≈ 64.5 MB
 #   matmul    : 12 × 1800²                  = 38.9 MB (75 MB → 38.9, ~½)
 #   transpose : 8 × 2828²                   ≈ 64.0 MB
+#   nbody     : 64 × 1,048,576              = 64.0 MB
+#   floyd     : 8 × 2896²                   ≈ 64.0 MB
 #   pagerank  : 40000² × 0.005 × 8          ≈ 64.0 MB
 #   spmv      : 8 × 92681² × 0.000931       ≈ 64.0 MB
 #   stencil2d : 8 × 2828 × 2832             ≈ 64.0 MB
@@ -115,18 +146,20 @@ bench_args_map_coal = {
     'atax':                   "-x=4000 -y=4000",
     'bfs':                    "-node=470000 -degree=32",
     'conv2d':                 "-N=1 -C=3 -H=236 -W=236 -output-channel=3 -kernel-height=7 -kernel-width=7",
+    'floydwarshall':          "-node=2896 -iter=2",
     'im2col':                 "-N=1 -C=3 -H=520 -W=520 -kernel-height=3 -kernel-width=3",
-    'kmeans':                 "-points=250000 -features=32 -clusters=100 -max-iter=5",
+    'kmeans':                 "-points=250000 -features=32 -clusters=100 -max-iter=2",
     'matrixmultiplication':   "-x=1800 -y=1800 -z=1800",
     'matrixtranspose':        "-width=2828",
+    'nbody':                  "-particles=1048576 -iter=4",
     'pagerank':               "-node=40000 -sparsity=0.005 -iterations=3",
     'spmv':                   "-dim=92681 -sparsity=0.000931",
     'stencil2d':              "-row=2828 -col=2828 -iter=4",
     'relu':                   "-length=8000000",
     'xor':                    "",
-    'lenet':                  "-epoch=1 -max-batch-per-epoch=2 -batch-size=256",
-    'minerva':                "-epoch=1 -max-batch-per-epoch=2 -batch-size=256",
-    'vgg16':                  "-epoch=1 -max-batch-per-epoch=2 -batch-size=16",
+    'lenet':                  "-epoch=1 -max-batch-per-epoch=1 -batch-size=256",
+    'minerva':                "-epoch=1 -max-batch-per-epoch=1 -batch-size=256",
+    'vgg16':                  "-epoch=1 -max-batch-per-epoch=1 -batch-size=16",
 }
 
 bench_args_map = {
@@ -135,7 +168,7 @@ bench_args_map = {
     # 128.0 MiB ≈ 134.2 MB
     'fft': "-MB=128 -passes=64",
     # 128.0 MB: (5657² + 3×5657) × 4
-    'atax': "-x=5657 -y=5657",
+    'atax': "-x=8000 -y=8000",
     # 127.8 MB: 940000 × 34 × 4
     'bfs': "-node=940000 -degree=32",
     # 128.4 MB: 1×3×333²×8 + 1176×327² (im2col 내부 버퍼 지배)
@@ -143,14 +176,20 @@ bench_args_map = {
     # 129.0 MB: 24×735² + 216×733²
     'im2col': "-N=1 -C=3 -H=735 -W=735 -kernel-height=3 -kernel-width=3",
     # 128.0 MB: (2×500000×32 + 500000 + 100×32) × 4
-    'kmeans': "-points=500000 -features=32 -clusters=100 -max-iter=5",
+    'kmeans': "-points=500000 -features=32 -clusters=100 -max-iter=2",
     # 128.0 MB (기준): 3 × 3266² × 4
     'matrixmultiplication': "-x=2500 -y=2500 -z=2500",
     # 128.0 MB: 2 × 4000² × 4 (uint32)
     # 이전 -width=8192는 사실 ~537 MB로 코멘트(30.73 MB)와 불일치하던 버그.
     'matrixtranspose': "-width=4000",
+    # 128.0 MB: 64 × 2,097,152 (4 unified-mem float4 버퍼)
+    # groupSize=256 의 배수 (2097152 = 8192 × 256)
+    'nbody': "-particles=2097152 -iter=4",
+    # 128.0 MB: 8 × 4096² (uint32 path + dist 행렬 2개)
+    # blockSize=8 의 배수. 기본 iter = numNodes 라 매우 무거워 4 로 고정.
+    'floydwarshall': "-node=4096 -iter=4",
     # 128.1 MB: 56600² × 0.005 ≈ 16.0M edges, × 8B
-    'pagerank': "-node=56600 -sparsity=0.005 -iterations=3",
+    'pagerank': "-node=80000 -sparsity=0.005 -iterations=3",
     # 128.0 MB: 131072² × 0.000931 × 8 + 12 × 131072
     # numWGX = 131072/128 = 1024 → 4 real GPU 균등 분배 (각 256 WGs)
     'spmv': "-dim=131072 -sparsity=0.000931",
@@ -161,7 +200,7 @@ bench_args_map = {
     'relu':    "-length=16000000",
     'xor':     "",
     'lenet':   "-epoch=1 -max-batch-per-epoch=2 -batch-size=512",
-    'minerva': "-epoch=1 -max-batch-per-epoch=2 -batch-size=512",
+    'minerva': "-epoch=1 -max-batch-per-epoch=1 -batch-size=512",
     'vgg16':   "-epoch=1 -max-batch-per-epoch=2 -batch-size=32",
 }
 
@@ -224,7 +263,7 @@ for benchmark in benchmarks:
 
     #         f.write(f"../{benchmark} \\\n")
     #         f.write("    -timing \\\n")
-    #         f.write("    -unified-gpus=1,2,3,4,5 \\\n")
+    #         f.write("    -unified-gpus=1,2,3,4 \\\n")
     #         f.write("    -use-unified-memory \\\n")
     #         f.write("    -page-migration-policy=AccessCounter \\\n")
     #         if cfg['dir_arg']:
@@ -275,7 +314,7 @@ for benchmark in benchmarks:
         f.write(f"export EVENT_LOG_PATH={out_events}\n\n")  # 추가 — workload 별 분리
         f.write(f"../{benchmark} \\\n")
         f.write("    -timing \\\n")
-        f.write("    -unified-gpus=1,2,3,4,5 \\\n")
+        f.write("    -unified-gpus=1,2,3,4 \\\n")
         f.write("    -use-unified-memory \\\n")
         f.write("    -coherence-directory=SuperDirectory \\\n")
         f.write("    -log2-page-size=12 \\\n")
@@ -292,6 +331,54 @@ for benchmark in benchmarks:
     os.chmod(sd_sh_path, 0o744)
     all_benchmark_scripts[benchmark].append(("superdirectory", sd_sh_path))
     all_dir_scripts.setdefault("superdirectory", []).append((benchmark, sd_sh_path))
+
+    # ---------------------------------------------------------
+    # [2b] SD_FE 스크립트 (SD + -sd-fe). 기본 SD와 같은 인자에 -sd-fe만 추가.
+    #      coarser 3개 bank의 #set을 1/4로 줄여 hardware overhead를 ~16% 절감
+    #      (storage: 398K → 334K bits 수준, increment 0.246 → 0.045).
+    # ---------------------------------------------------------
+    result_dir_sdfe = os.path.join(results_base, "SD_FE")
+    sdfe_text_dir = os.path.join(result_dir_sdfe, "rawdata", "text")
+    sdfe_sql_dir  = os.path.join(result_dir_sdfe, "rawdata", "sql")
+    os.makedirs(sdfe_text_dir, exist_ok=True)
+    os.makedirs(sdfe_sql_dir,  exist_ok=True)
+
+    sdfe_dir = os.path.join(sample_dir, "SD_FE")
+    os.makedirs(sdfe_dir, exist_ok=True)
+    sdfe_sh_path = os.path.join(sdfe_dir, f"run_{benchmark}_SD_FE.sh")
+
+    with open(sdfe_sh_path, "w") as f:
+        out_txt = os.path.join(sdfe_text_dir, f"{benchmark}_SD_FE.txt")
+        out_sql = os.path.join(sdfe_sql_dir,  f"{benchmark}_SD_FE.sqlite3")
+
+        pw_csv = ""
+        if benchmark in PW_BENCHMARKS:
+            pw_out_dir = os.path.join(results_base, "per_window", benchmark)
+            os.makedirs(pw_out_dir, exist_ok=True)
+            pw_csv = os.path.join(pw_out_dir, f"{benchmark}_SD_FE_per_window.csv")
+
+        f.write("#!/bin/bash\n\n")
+        f.write(f"cd {sdfe_dir}\n\n")
+        f.write(f"../{benchmark} \\\n")
+        f.write("    -timing \\\n")
+        f.write("    -unified-gpus=1,2,3,4 \\\n")
+        f.write("    -use-unified-memory \\\n")
+        f.write("    -coherence-directory=SuperDirectory \\\n")
+        f.write("    -sd-fe \\\n")
+        f.write("    -log2-page-size=12 \\\n")
+        f.write(f"    {bench_args} \\\n")
+        if pw_csv:
+            f.write(f"    -per-window-snapshot \\\n")
+            f.write(f"    -window-instructions={PW_WINDOW_INST} \\\n")
+            f.write(f"    -per-window-output={pw_csv} \\\n")
+        f.write("    -report-all \\\n")
+        f.write(f"    {f'> {out_txt}' if SAVE_STDOUT else STDOUT_REDIRECT}\n\n")
+        f.write("# 결과 파일(SQLite) 이동 및 이름 변경\n")
+        f.write(f"mv akita_sim_*.sqlite3 {out_sql} 2>/dev/null\n\n")
+
+    os.chmod(sdfe_sh_path, 0o744)
+    all_benchmark_scripts[benchmark].append(("superdirectory_FE", sdfe_sh_path))
+    all_dir_scripts.setdefault("superdirectory_FE", []).append((benchmark, sdfe_sh_path))
 
     # ---------------------------------------------------------
     # [3] REC sweep 스크립트 및 경로 생성
@@ -342,7 +429,7 @@ for benchmark in benchmarks:
             f.write(f"cd {cfg_run_dir}\n\n")           # 전용 디렉토리로 이동
             f.write(f"../../{benchmark} \\\n")          # 바이너리는 REC의 두 단계 위
             f.write("    -timing \\\n")
-            f.write("    -unified-gpus=1,2,3,4,5 \\\n")
+            f.write("    -unified-gpus=1,2,3,4 \\\n")
             f.write("    -use-unified-memory \\\n")
             # f.write("    -page-migration-policy=AccessCounter \\\n")
             f.write("    -coherence-directory=REC \\\n")
@@ -418,7 +505,7 @@ for benchmark in benchmarks:
         f.write(f"cd {hmg_dir}\n\n")
         f.write(f"../{benchmark} \\\n")
         f.write("    -timing \\\n")
-        f.write("    -unified-gpus=1,2,3,4,5 \\\n")
+        f.write("    -unified-gpus=1,2,3,4 \\\n")
         f.write("    -use-unified-memory \\\n")
         # f.write("    -page-migration-policy=AccessCounter \\\n")
         f.write("    -coherence-directory=HMG \\\n")
@@ -504,7 +591,7 @@ for benchmark in benchmarks:
             f.write(f"cd {cfg_run_dir}\n\n")           # 전용 디렉토리로 이동
             f.write(f"../../{benchmark} \\\n")          # 바이너리는 CD의 두 단계 위
             f.write("    -timing \\\n")
-            f.write("    -unified-gpus=1,2,3,4,5 \\\n")
+            f.write("    -unified-gpus=1,2,3,4 \\\n")
             f.write("    -use-unified-memory \\\n")
             f.write("    -coherence-directory=CoherenceDirectory \\\n")
             f.write("    -log2-page-size=12 \\\n")
@@ -597,7 +684,7 @@ for benchmark in benchmarks:
         f.write(f"cd {coal_dir}\n\n")
         f.write(f"../{benchmark} \\\n")
         f.write("    -timing \\\n")
-        f.write("    -unified-gpus=1,2,3,4,5 \\\n")
+        f.write("    -unified-gpus=1,2,3,4 \\\n")
         f.write("    -use-unified-memory \\\n")
         # CD_0 (64B baseline): no aggregation, optdirectory observes raw
         # access pattern. Heatmap is workload-characteristic and independent
@@ -642,8 +729,17 @@ for benchmark in benchmarks:
         f.write("        wait -n 2>/dev/null || wait\n")
         f.write("    done\n")
         f.write("}\n\n")
+        # DNN 워크로드는 reduced config set만 등록 (CD fine-grained sweep 생략).
+        if benchmark in DNN_BENCHMARKS:
+            cfgs_to_register = [
+                (n, p) for (n, p) in all_benchmark_scripts[benchmark]
+                if n in DNN_ALLOWED_CONFIGS
+            ]
+        else:
+            cfgs_to_register = all_benchmark_scripts[benchmark]
+
         f.write(f"echo \"=== [{benchmark}] 시작 ===\"\n")
-        for config_name, script_path in all_benchmark_scripts[benchmark]:
+        for config_name, script_path in cfgs_to_register:
             f.write(f"run_bg \"{config_name}\" \"{script_path}\"\n")
         f.write("wait\n")
         f.write(f"echo \"=== [{benchmark}] 완료 ===\"\n")
