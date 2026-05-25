@@ -316,6 +316,7 @@ for benchmark in benchmarks:
         f.write("    -timing \\\n")
         f.write("    -unified-gpus=1,2,3,4 \\\n")
         f.write("    -use-unified-memory \\\n")
+        f.write("    -page-migration-policy=None \\\n")
         f.write("    -coherence-directory=SuperDirectory \\\n")
         f.write("    -log2-page-size=12 \\\n")
         f.write(f"    {bench_args} \\\n")
@@ -363,6 +364,7 @@ for benchmark in benchmarks:
         f.write("    -timing \\\n")
         f.write("    -unified-gpus=1,2,3,4 \\\n")
         f.write("    -use-unified-memory \\\n")
+        f.write("    -page-migration-policy=None \\\n")
         f.write("    -coherence-directory=SuperDirectory \\\n")
         f.write("    -sd-fe \\\n")
         f.write("    -log2-page-size=12 \\\n")
@@ -431,6 +433,7 @@ for benchmark in benchmarks:
             f.write("    -timing \\\n")
             f.write("    -unified-gpus=1,2,3,4 \\\n")
             f.write("    -use-unified-memory \\\n")
+            f.write("    -page-migration-policy=None \\\n")
             # f.write("    -page-migration-policy=AccessCounter \\\n")
             f.write("    -coherence-directory=REC \\\n")
             f.write("    -log2-page-size=12 \\\n")
@@ -507,6 +510,7 @@ for benchmark in benchmarks:
         f.write("    -timing \\\n")
         f.write("    -unified-gpus=1,2,3,4 \\\n")
         f.write("    -use-unified-memory \\\n")
+        f.write("    -page-migration-policy=None \\\n")
         # f.write("    -page-migration-policy=AccessCounter \\\n")
         f.write("    -coherence-directory=HMG \\\n")
         f.write("    -coherence-unit-size=2 \\\n")
@@ -593,6 +597,7 @@ for benchmark in benchmarks:
             f.write("    -timing \\\n")
             f.write("    -unified-gpus=1,2,3,4 \\\n")
             f.write("    -use-unified-memory \\\n")
+            f.write("    -page-migration-policy=None \\\n")
             f.write("    -coherence-directory=CoherenceDirectory \\\n")
             f.write("    -log2-page-size=12 \\\n")
             f.write(f"    {cfg['unit_arg']}")
@@ -686,6 +691,7 @@ for benchmark in benchmarks:
         f.write("    -timing \\\n")
         f.write("    -unified-gpus=1,2,3,4 \\\n")
         f.write("    -use-unified-memory \\\n")
+        f.write("    -page-migration-policy=None \\\n")
         # CD_0 (64B baseline): no aggregation, optdirectory observes raw
         # access pattern. Heatmap is workload-characteristic and independent
         # of which directory variant we run alongside.
