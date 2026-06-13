@@ -28,30 +28,30 @@ import os
 # ]
 
 benchmarks = [
-    'fir',
-    # 'fft',
-    'atax',
-    'bfs',
-    # 'simpleconvolution',
-    'im2col',
-    'kmeans',
     'matrixmultiplication',
     'matrixtranspose',
-    'nbody',
-    'floydwarshall',
     'pagerank',
     'spmv',
     'stencil2d',
-
-    # # DNN layer benchmarks
-    # 'relu',
     'conv2d',
+    'fir',
+    'bfs',
+    'im2col',
 
     # # DNN training benchmarks (dataset 없음: xor 만 활성화)
     # 'xor',
     'lenet',
     'minerva',
     # 'vgg16',
+
+    # 아래는 비활성화 (요청 실행 순서에서 제외)
+    # 'fft',
+    # 'simpleconvolution',
+    # 'relu',          # DNN layer benchmark
+    # 'atax',
+    # 'kmeans',
+    # 'nbody',
+    # 'floydwarshall',
 ]
 
 # Per-window snapshot 을 활성화할 workload 목록 (§3.3 R-sweep 대상)
@@ -154,7 +154,7 @@ bench_args_map_coal = {
     'nbody':                  "-particles=1048576 -iter=4",
     'pagerank':               "-node=40000 -sparsity=0.005 -iterations=3",
     'spmv':                   "-dim=92681 -sparsity=0.000931",
-    'stencil2d':              "-row=2828 -col=2828 -iter=4",
+    'stencil2d':              "-row=2828 -col=2828 -iter=2",
     'relu':                   "-length=8000000",
     'xor':                    "",
     'lenet':                  "-epoch=1 -max-batch-per-epoch=1 -batch-size=256",
@@ -315,6 +315,8 @@ for benchmark in benchmarks:
         f.write(f"../{benchmark} \\\n")
         f.write("    -timing \\\n")
         f.write("    -unified-gpus=1,2,3,4 \\\n")
+        f.write("    -inter-gpu-noc \\\n")
+        f.write("    -inter-gpu-noc-bw=300 \\\n")
         f.write("    -use-unified-memory \\\n")
         f.write("    -page-migration-policy=None \\\n")
         f.write("    -coherence-directory=SuperDirectory \\\n")
@@ -363,6 +365,8 @@ for benchmark in benchmarks:
         f.write(f"../{benchmark} \\\n")
         f.write("    -timing \\\n")
         f.write("    -unified-gpus=1,2,3,4 \\\n")
+        f.write("    -inter-gpu-noc \\\n")
+        f.write("    -inter-gpu-noc-bw=300 \\\n")
         f.write("    -use-unified-memory \\\n")
         f.write("    -page-migration-policy=None \\\n")
         f.write("    -coherence-directory=SuperDirectory \\\n")
@@ -432,6 +436,8 @@ for benchmark in benchmarks:
             f.write(f"../../{benchmark} \\\n")          # 바이너리는 REC의 두 단계 위
             f.write("    -timing \\\n")
             f.write("    -unified-gpus=1,2,3,4 \\\n")
+            f.write("    -inter-gpu-noc \\\n")
+            f.write("    -inter-gpu-noc-bw=300 \\\n")
             f.write("    -use-unified-memory \\\n")
             f.write("    -page-migration-policy=None \\\n")
             # f.write("    -page-migration-policy=AccessCounter \\\n")
@@ -509,6 +515,8 @@ for benchmark in benchmarks:
         f.write(f"../{benchmark} \\\n")
         f.write("    -timing \\\n")
         f.write("    -unified-gpus=1,2,3,4 \\\n")
+        f.write("    -inter-gpu-noc \\\n")
+        f.write("    -inter-gpu-noc-bw=300 \\\n")
         f.write("    -use-unified-memory \\\n")
         f.write("    -page-migration-policy=None \\\n")
         # f.write("    -page-migration-policy=AccessCounter \\\n")
@@ -596,6 +604,8 @@ for benchmark in benchmarks:
             f.write(f"../../{benchmark} \\\n")          # 바이너리는 CD의 두 단계 위
             f.write("    -timing \\\n")
             f.write("    -unified-gpus=1,2,3,4 \\\n")
+            f.write("    -inter-gpu-noc \\\n")
+            f.write("    -inter-gpu-noc-bw=300 \\\n")
             f.write("    -use-unified-memory \\\n")
             f.write("    -page-migration-policy=None \\\n")
             f.write("    -coherence-directory=CoherenceDirectory \\\n")
@@ -690,6 +700,8 @@ for benchmark in benchmarks:
         f.write(f"../{benchmark} \\\n")
         f.write("    -timing \\\n")
         f.write("    -unified-gpus=1,2,3,4 \\\n")
+        f.write("    -inter-gpu-noc \\\n")
+        f.write("    -inter-gpu-noc-bw=300 \\\n")
         f.write("    -use-unified-memory \\\n")
         f.write("    -page-migration-policy=None \\\n")
         # CD_0 (64B baseline): no aggregation, optdirectory observes raw
@@ -764,6 +776,133 @@ print(f"Results will be collected in:\n"
       f"  - {os.path.join(results_base, 'CD', 'rawdata')}\n"
       f"  - {os.path.join(results_base, 'motivation', 'rawdata')} (ideal 실험 결과 복사)\n"
       f"  - {os.path.join(results_base, 'coalescability', 'rawdata')} (sharer heatmap RLE)")
+
+# =========================================================
+# [ABLATION] SuperDirectory ablation studies.
+#   a0 : no RSB + no CBF
+#   a3 : a0 + promote-at-evict OFF
+#   a6 : numBanks sweep {3,7,9} @ fixed 4x/bank (log2-sub-entry=2)
+#        region(bank i) = 64B * 4^i ; coarsest grows with bank count
+#        (3 banks -> 1KB, 7 -> 256KB, 9 -> 4MB).
+#
+# Workload settings are IDENTICAL to the general experiments: same
+# bench_args_map sizes, -unified-gpus=1,2,3,4, -page-migration-policy=None,
+# -log2-page-size=12, -report-all, and per-window snapshot for PW_BENCHMARKS
+# (the SD block above, with only the ablation flags added).
+#
+# Run on all general-experiment workloads EXCEPT the DNN-training
+# benchmarks (lenet, minerva) — derived from the main `benchmarks` list so
+# it tracks any change there automatically.
+# Results go to results_ablation/ (does NOT touch the main sweep).
+# =========================================================
+ABLATION_BENCHMARKS = [b for b in benchmarks if b not in ('lenet', 'minerva')]
+
+# (study_id, results_subdir, [extra SuperDirectory flags])
+ablation_configs = [
+    ("a0",        "A0_no_rsb_cbf",          ["-sd-disable-rsb=true", "-sd-disable-cbf=true"]),
+    ("a3",        "A3_no_promote_at_evict", ["-sd-disable-rsb=true", "-sd-disable-cbf=true",
+                                             "-sd-promote-at-evict=false"]),
+    ("a6_3banks", "A6_nbank/3banks",        ["-sd-num-banks=3", "-sd-log2-sub-entry=2"]),
+    ("a6_7banks", "A6_nbank/7banks",        ["-sd-num-banks=7", "-sd-log2-sub-entry=2"]),
+    ("a6_9banks", "A6_nbank/9banks",        ["-sd-num-banks=9", "-sd-log2-sub-entry=2"]),
+]
+
+# a5 : hold the region-size SPAN fixed at 64B .. 64B*2^8 (16KB) while sweeping
+# the per-bank granularity step (log2-sub-entry). numBanks is NOT free — it
+# follows from  log2 * (numBanks-1) = 8, so it changes with log2:
+#   log2=1 (2x/bank)  -> 9 banks      log2=4 (16x/bank)  -> 3 banks
+#   log2=8 (256x/bank) -> 2 banks
+# log2=2 (4x/bank, 5 banks) is OMITTED — it is the default config (= baseline).
+# (Orthogonal to a6, which fixes 4x/bank and sweeps numBanks.)
+for _log2, _nb in [(1, 9), (4, 3), (8, 2)]:
+    ablation_configs.append(
+        (f"a5_log2_{_log2}", f"A5_log2sweep/log2_{_log2}",
+         [f"-sd-num-banks={_nb}", f"-sd-log2-sub-entry={_log2}"]))
+
+results_ablation_base = os.path.abspath(os.path.join(current_dir, "..", "results_ablation"))
+ablation_master_entries = []  # [(label, script_path), ...]
+
+for benchmark in ABLATION_BENCHMARKS:
+    bench_args = bench_args_map.get(benchmark, "")
+    sample_dir = os.path.abspath(os.path.join(current_dir, "..", "mgpusim", "amd", "samples", benchmark))
+    abl_base_dir = os.path.join(sample_dir, "ablation")
+    os.makedirs(abl_base_dir, exist_ok=True)
+
+    for study_id, results_subdir, extra_flags in ablation_configs:
+        result_dir = os.path.join(results_ablation_base, results_subdir)
+        text_dir  = os.path.join(result_dir, "rawdata", "text")
+        sql_dir   = os.path.join(result_dir, "rawdata", "sql")
+        event_dir = os.path.join(result_dir, "rawdata", "events")
+        os.makedirs(text_dir,  exist_ok=True)
+        os.makedirs(sql_dir,   exist_ok=True)
+        os.makedirs(event_dir, exist_ok=True)
+
+        # Per-config subdirectory so each run gets its own akita_sim_*.sqlite3
+        # (binary is two levels up: samples/{benchmark}/{benchmark}).
+        run_dir = os.path.join(abl_base_dir, study_id)
+        os.makedirs(run_dir, exist_ok=True)
+        sh_path = os.path.join(run_dir, f"run_{benchmark}_{study_id}.sh")
+
+        out_txt    = os.path.join(text_dir,  f"{benchmark}_{study_id}.txt")
+        out_sql    = os.path.join(sql_dir,   f"{benchmark}_{study_id}.sqlite3")
+        out_events = os.path.join(event_dir, f"{benchmark}_{study_id}_events.parquet")
+
+        pw_csv = ""
+        if benchmark in PW_BENCHMARKS:
+            pw_out_dir = os.path.join(results_ablation_base, "per_window", benchmark)
+            os.makedirs(pw_out_dir, exist_ok=True)
+            pw_csv = os.path.join(pw_out_dir, f"{benchmark}_{study_id}_per_window.csv")
+
+        with open(sh_path, "w") as f:
+            f.write("#!/bin/bash\n\n")
+            f.write(f"cd {run_dir}\n\n")
+            f.write(f"export EVENT_LOG_PATH={out_events}\n\n")
+            f.write(f"../../{benchmark} \\\n")          # 바이너리는 ablation/{study}의 두 단계 위
+            f.write("    -timing \\\n")
+            f.write("    -unified-gpus=1,2,3,4 \\\n")
+            f.write("    -inter-gpu-noc \\\n")
+            f.write("    -inter-gpu-noc-bw=300 \\\n")
+            f.write("    -use-unified-memory \\\n")
+            f.write("    -page-migration-policy=None \\\n")
+            f.write("    -coherence-directory=SuperDirectory \\\n")
+            for flag in extra_flags:
+                f.write(f"    {flag} \\\n")
+            f.write("    -log2-page-size=12 \\\n")
+            f.write(f"    {bench_args} \\\n")
+            if pw_csv:
+                f.write(f"    -per-window-snapshot \\\n")
+                f.write(f"    -window-instructions={PW_WINDOW_INST} \\\n")
+                f.write(f"    -per-window-output={pw_csv} \\\n")
+            f.write("    -report-all \\\n")
+            f.write(f"    {f'> {out_txt}' if SAVE_STDOUT else STDOUT_REDIRECT}\n\n")
+            f.write("# 결과 파일(SQLite) 이동 및 이름 변경\n")
+            f.write(f"mv akita_sim_*.sqlite3 {out_sql} 2>/dev/null\n\n")
+
+        os.chmod(sh_path, 0o744)
+        ablation_master_entries.append((f"{benchmark}_{study_id}", sh_path))
+
+# ablation 마스터 스크립트 (최대 4개 병렬). 저장 위치: script/run_ablation_all.sh
+ablation_master_sh_path = os.path.join(current_dir, "run_ablation_all.sh")
+with open(ablation_master_sh_path, "w") as f:
+    f.write("#!/bin/bash\n\n")
+    f.write("MAX_PARALLEL=4\n\n")
+    f.write("trap 'echo \"중단 중...\"; kill 0; exit 1' INT TERM\n\n")
+    f.write("run_bg() {\n")
+    f.write("    local label=$1\n")
+    f.write("    local script_path=$2\n")
+    f.write("    echo \"  [${label}] 실행 중...\"\n")
+    f.write("    bash \"${script_path}\" &\n")
+    f.write("    while [ \"$(jobs -rp | wc -l)\" -ge \"${MAX_PARALLEL}\" ]; do\n")
+    f.write("        wait -n 2>/dev/null || wait\n")
+    f.write("    done\n")
+    f.write("}\n\n")
+    f.write("echo \"=== [ablation] 시작 (a0/a3/a6, 일반 실험 workload 세팅) ===\"\n")
+    for label, script_path in ablation_master_entries:
+        f.write(f"run_bg \"{label}\" \"{script_path}\"\n")
+    f.write("wait\n")
+    f.write("echo \"=== [ablation] 완료 ===\"\n")
+os.chmod(ablation_master_sh_path, 0o744)
+print(f"  [ablation master] {ablation_master_sh_path}  ({len(ablation_master_entries)} runs)")
 
 # ---------------------------------------------------------
 # directory별 마스터 스크립트 생성 (최대 4개 병렬)
