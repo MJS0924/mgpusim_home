@@ -224,9 +224,10 @@ all_workload_masters  = []  # [(benchmark, workload_master_path), ...]
 
 for benchmark in benchmarks:
     bench_args = bench_args_map.get(benchmark, "")
-    # [CD8 FIX] stencil2d 실험은 L2 invDirtyFlushReserve(CD_8 16KB cross-GPU
-    # writeback 데드락 fix)를 스크립트에 명시적으로 ON. 빌더 기본값이 이미 true
-    # 이지만 재현성을 위해 stencil2d 모든 config(SD/SD_FE/REC/HMG/CD)에 명시한다.
+    # [CD8 FIX] CD_8 16KB cross-GPU writeback 데드락 fix(L2 invDirtyFlushReserve)는
+    # -cd8-deadlock-fix 플래그로 제어되고 기본값은 OFF(원본 동작)다. 따라서 fix를
+    # 켜려면 명시적으로 =true 를 줘야 한다 — stencil2d 모든 config(SD/SD_FE/REC/HMG/CD)
+    # 에만 붙인다. (다른 워크로드는 플래그 미지정 → 기본 OFF → fix 없는 원본 baseline.)
     # Go flag는 위치 무관이라 bench_args 끝에 붙여도 정상 파싱됨.
     if benchmark == "stencil2d":
         bench_args = (bench_args + " -cd8-deadlock-fix=true").strip()
@@ -830,9 +831,10 @@ ablation_master_entries = []  # [(label, script_path), ...]
 
 for benchmark in ABLATION_BENCHMARKS:
     bench_args = bench_args_map.get(benchmark, "")
-    # [CD8 FIX] stencil2d 실험은 L2 invDirtyFlushReserve(CD_8 16KB cross-GPU
-    # writeback 데드락 fix)를 스크립트에 명시적으로 ON. 빌더 기본값이 이미 true
-    # 이지만 재현성을 위해 stencil2d 모든 config(SD/SD_FE/REC/HMG/CD)에 명시한다.
+    # [CD8 FIX] CD_8 16KB cross-GPU writeback 데드락 fix(L2 invDirtyFlushReserve)는
+    # -cd8-deadlock-fix 플래그로 제어되고 기본값은 OFF(원본 동작)다. 따라서 fix를
+    # 켜려면 명시적으로 =true 를 줘야 한다 — stencil2d 모든 config(SD/SD_FE/REC/HMG/CD)
+    # 에만 붙인다. (다른 워크로드는 플래그 미지정 → 기본 OFF → fix 없는 원본 baseline.)
     # Go flag는 위치 무관이라 bench_args 끝에 붙여도 정상 파싱됨.
     if benchmark == "stencil2d":
         bench_args = (bench_args + " -cd8-deadlock-fix=true").strip()
