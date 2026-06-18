@@ -224,6 +224,12 @@ all_workload_masters  = []  # [(benchmark, workload_master_path), ...]
 
 for benchmark in benchmarks:
     bench_args = bench_args_map.get(benchmark, "")
+    # [CD8 FIX] stencil2d 실험은 L2 invDirtyFlushReserve(CD_8 16KB cross-GPU
+    # writeback 데드락 fix)를 스크립트에 명시적으로 ON. 빌더 기본값이 이미 true
+    # 이지만 재현성을 위해 stencil2d 모든 config(SD/SD_FE/REC/HMG/CD)에 명시한다.
+    # Go flag는 위치 무관이라 bench_args 끝에 붙여도 정상 파싱됨.
+    if benchmark == "stencil2d":
+        bench_args = (bench_args + " -cd8-deadlock-fix=true").strip()
     sample_dir = os.path.abspath(os.path.join(current_dir, "..", "mgpusim", "amd", "samples", benchmark))
     all_benchmark_scripts[benchmark] = []
 
@@ -824,6 +830,12 @@ ablation_master_entries = []  # [(label, script_path), ...]
 
 for benchmark in ABLATION_BENCHMARKS:
     bench_args = bench_args_map.get(benchmark, "")
+    # [CD8 FIX] stencil2d 실험은 L2 invDirtyFlushReserve(CD_8 16KB cross-GPU
+    # writeback 데드락 fix)를 스크립트에 명시적으로 ON. 빌더 기본값이 이미 true
+    # 이지만 재현성을 위해 stencil2d 모든 config(SD/SD_FE/REC/HMG/CD)에 명시한다.
+    # Go flag는 위치 무관이라 bench_args 끝에 붙여도 정상 파싱됨.
+    if benchmark == "stencil2d":
+        bench_args = (bench_args + " -cd8-deadlock-fix=true").strip()
     sample_dir = os.path.abspath(os.path.join(current_dir, "..", "mgpusim", "amd", "samples", benchmark))
     abl_base_dir = os.path.join(sample_dir, "ablation")
     os.makedirs(abl_base_dir, exist_ok=True)
