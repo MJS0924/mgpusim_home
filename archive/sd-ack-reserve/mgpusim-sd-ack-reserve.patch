@@ -1,0 +1,111 @@
+diff --git a/amd/samples/runner/flag.go b/amd/samples/runner/flag.go
+index b1ac3326..c62cce0d 100644
+--- a/amd/samples/runner/flag.go
++++ b/amd/samples/runner/flag.go
+@@ -92,6 +92,11 @@ var cd8DeadlockFix = flag.Bool("cd8-deadlock-fix", false,
+ 		"writeback deadlock. DEFAULT OFF (original behavior, so non-stencil "+
+ 		"baselines stay unchanged); set =true to enable the fix. The generated "+
+ 		"stencil2d scripts pass =true explicitly.")
++var sdAckReserve = flag.Bool("sd-ack-reserve", false,
++	"Enable the L2 ackDisplaceReserve that fixes the SD 9-bank cross-GPU "+
++		"eviction-credit deadlock (peer-incoming write displacement victim gets a "+
++		"dedicated bounded placement lane so its freeing WriteDoneRsp/ack is never "+
++		"blocked). DEFAULT OFF (original behavior); set =true to enable the fix.")
+ var cdFifoReplacement = flag.Bool("cd-fifo-replacement", false,
+ 	"Use FIFO replacement for CD/HMG directory (paper §4.2 baseline). REC unaffected.")
+ var sdNumBanks = flag.Int("sd-num-banks", 5,
+@@ -256,6 +261,7 @@ func (r *Runner) parseGPUFlag() {
+ 
+ 	r.idealDirectory = *idealDirectory
+ 	r.cd8DeadlockFix = *cd8DeadlockFix
++	r.sdAckReserve = *sdAckReserve
+ 	r.cdFifoReplacement = *cdFifoReplacement
+ 	r.sdNumBanks = *sdNumBanks
+ 	r.sdLog2NumSubEntry = *sdLog2NumSubEntry
+diff --git a/amd/samples/runner/runner.go b/amd/samples/runner/runner.go
+index caacd122..f568d72a 100644
+--- a/amd/samples/runner/runner.go
++++ b/amd/samples/runner/runner.go
+@@ -52,6 +52,7 @@ type Runner struct {
+ 	coherenceDirectory         uint64
+ 	idealDirectory             bool
+ 	cd8DeadlockFix             bool
++	sdAckReserve               bool
+ 	cdFifoReplacement          bool
+ 	sdNumBanks                 int
+ 	sdLog2NumSubEntry          uint64
+@@ -131,6 +132,7 @@ func (r *Runner) buildTimingPlatform() {
+ 		WithCoherenceDirectory(r.coherenceDirectory).
+ 		WithIdealDirectory(r.idealDirectory).
+ 		WithCD8DeadlockFix(r.cd8DeadlockFix).
++		WithSDAckReserve(r.sdAckReserve).
+ 		WithCDFifoReplacement(r.cdFifoReplacement).
+ 		WithSDNumBanks(r.sdNumBanks).
+ 		WithSDLog2NumSubEntry(r.sdLog2NumSubEntry).
+diff --git a/amd/samples/runner/timingconfig/builder.go b/amd/samples/runner/timingconfig/builder.go
+index 60fc2592..3348d1c3 100644
+--- a/amd/samples/runner/timingconfig/builder.go
++++ b/amd/samples/runner/timingconfig/builder.go
+@@ -55,6 +55,7 @@ type Builder struct {
+ 	rdmaAddressMapper *mem.BankedAddressPortMapper
+ 	idealDirectory    bool
+ 	cd8DeadlockFix    bool
++	sdAckReserve      bool
+ 	cdFifoReplacement bool
+ 
+ 	// gpuDeviceIDs are the NVLink-fabric device IDs returned by
+@@ -207,6 +208,13 @@ func (b Builder) WithCD8DeadlockFix(on bool) Builder {
+ 	return b
+ }
+ 
++// WithSDAckReserve toggles the SD 9-bank cross-GPU eviction-credit deadlock fix
++// (L2 ackDisplaceReserve).
++func (b Builder) WithSDAckReserve(on bool) Builder {
++	b.sdAckReserve = on
++	return b
++}
++
+ func (b Builder) WithCDFifoReplacement(v bool) Builder {
+ 	b.cdFifoReplacement = v
+ 	return b
+@@ -572,6 +580,7 @@ func (b *Builder) createGPUBuilder(
+ 		WithCoherenceDirectory(b.coherenceDirectory).
+ 		WithIdealDirectory(b.idealDirectory).
+ 		WithCD8DeadlockFix(b.cd8DeadlockFix).
++		WithSDAckReserve(b.sdAckReserve).
+ 		WithCDFifoReplacement(b.cdFifoReplacement).
+ 		WithCohDirSize(b.sdByteSize).
+ 		WithSDNumBanks(b.sdNumBanks).
+diff --git a/amd/samples/runner/timingconfig/r9nano/builder.go b/amd/samples/runner/timingconfig/r9nano/builder.go
+index bee5ff0d..eea2f920 100644
+--- a/amd/samples/runner/timingconfig/r9nano/builder.go
++++ b/amd/samples/runner/timingconfig/r9nano/builder.go
+@@ -102,6 +102,7 @@ type Builder struct {
+ 	coherenceDirectory  uint64
+ 	idealDirectory      bool
+ 	cd8DeadlockFix      bool // [CD8-DEADLOCK FIX] toggle the L2 invDirtyFlushReserve
++	sdAckReserve        bool // [SD-ACK-RESERVE] toggle the L2 ackDisplaceReserve
+ 	cdFifoReplacement   bool // FIFO replacement for CD/HMG (paper §4.2 baseline)
+ }
+ 
+@@ -258,6 +259,12 @@ func (b Builder) WithCD8DeadlockFix(on bool) Builder {
+ 	return b
+ }
+ 
++// WithSDAckReserve toggles the L2 ackDisplaceReserve (SD 9-bank deadlock fix).
++func (b Builder) WithSDAckReserve(on bool) Builder {
++	b.sdAckReserve = on
++	return b
++}
++
+ func (b Builder) WithCDFifoReplacement(v bool) Builder {
+ 	b.cdFifoReplacement = v
+ 	return b
+@@ -1433,6 +1440,7 @@ func (b *Builder) buildL2Caches() {
+ 			WithFreq(b.freq).
+ 			WithDeviceID(int(b.gpuID)).
+ 			WithCD8DeadlockFix(b.cd8DeadlockFix). // [CD8-DEADLOCK FIX] toggle
++			WithAckReserveFix(b.sdAckReserve).   // [SD-ACK-RESERVE] toggle
+ 			WithLog2BlockSize(b.log2CacheLineSize).
+ 			WithLog2PageSize(b.log2PageSize).
+ 			WithLog2UnitSize(b.log2CoherenceUnitSize).
