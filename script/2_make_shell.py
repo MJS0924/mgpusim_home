@@ -323,7 +323,7 @@ for benchmark in benchmarks:
         f.write("    -timing \\\n")
         f.write("    -unified-gpus=1,2,3,4 \\\n")
         f.write("    -inter-gpu-noc \\\n")
-        f.write("    -inter-gpu-noc-bw=300 \\\n")
+        f.write("    -inter-gpu-noc-bw=1800 \\\n")
         f.write("    -use-unified-memory \\\n")
         f.write("    -page-migration-policy=None \\\n")
         f.write("    -coherence-directory=SuperDirectory \\\n")
@@ -373,7 +373,7 @@ for benchmark in benchmarks:
         f.write("    -timing \\\n")
         f.write("    -unified-gpus=1,2,3,4 \\\n")
         f.write("    -inter-gpu-noc \\\n")
-        f.write("    -inter-gpu-noc-bw=300 \\\n")
+        f.write("    -inter-gpu-noc-bw=1800 \\\n")
         f.write("    -use-unified-memory \\\n")
         f.write("    -page-migration-policy=None \\\n")
         f.write("    -coherence-directory=SuperDirectory \\\n")
@@ -444,7 +444,7 @@ for benchmark in benchmarks:
             f.write("    -timing \\\n")
             f.write("    -unified-gpus=1,2,3,4 \\\n")
             f.write("    -inter-gpu-noc \\\n")
-            f.write("    -inter-gpu-noc-bw=300 \\\n")
+            f.write("    -inter-gpu-noc-bw=1800 \\\n")
             f.write("    -use-unified-memory \\\n")
             f.write("    -page-migration-policy=None \\\n")
             # f.write("    -page-migration-policy=AccessCounter \\\n")
@@ -523,7 +523,7 @@ for benchmark in benchmarks:
         f.write("    -timing \\\n")
         f.write("    -unified-gpus=1,2,3,4 \\\n")
         f.write("    -inter-gpu-noc \\\n")
-        f.write("    -inter-gpu-noc-bw=300 \\\n")
+        f.write("    -inter-gpu-noc-bw=1800 \\\n")
         f.write("    -use-unified-memory \\\n")
         f.write("    -page-migration-policy=None \\\n")
         # f.write("    -page-migration-policy=AccessCounter \\\n")
@@ -612,7 +612,7 @@ for benchmark in benchmarks:
             f.write("    -timing \\\n")
             f.write("    -unified-gpus=1,2,3,4 \\\n")
             f.write("    -inter-gpu-noc \\\n")
-            f.write("    -inter-gpu-noc-bw=300 \\\n")
+            f.write("    -inter-gpu-noc-bw=1800 \\\n")
             f.write("    -use-unified-memory \\\n")
             f.write("    -page-migration-policy=None \\\n")
             f.write("    -coherence-directory=CoherenceDirectory \\\n")
@@ -708,7 +708,7 @@ for benchmark in benchmarks:
         f.write("    -timing \\\n")
         f.write("    -unified-gpus=1,2,3,4 \\\n")
         f.write("    -inter-gpu-noc \\\n")
-        f.write("    -inter-gpu-noc-bw=300 \\\n")
+        f.write("    -inter-gpu-noc-bw=1800 \\\n")
         f.write("    -use-unified-memory \\\n")
         f.write("    -page-migration-policy=None \\\n")
         # CD_0 (64B baseline): no aggregation, optdirectory observes raw
@@ -786,8 +786,8 @@ print(f"Results will be collected in:\n"
 
 # =========================================================
 # [ABLATION] SuperDirectory ablation studies.
-#   a0 : no RSB + no CBF
-#   a3 : a0 + promote-at-evict OFF
+#   a0 : promote-at-evict OFF
+#   a3 : promote-at-evict OFF + no RSB + no CBF
 #   a6 : numBanks sweep {3,7,9} @ fixed 4x/bank (log2-sub-entry=2)
 #        region(bank i) = 64B * 4^i ; coarsest grows with bank count
 #        (3 banks -> 1KB, 7 -> 256KB, 9 -> 4MB).
@@ -806,9 +806,9 @@ ABLATION_BENCHMARKS = [b for b in benchmarks if b not in ('lenet', 'minerva')]
 
 # (study_id, results_subdir, [extra SuperDirectory flags])
 ablation_configs = [
-    ("a0",        "A0_no_rsb_cbf",          ["-sd-disable-rsb=true", "-sd-disable-cbf=true"]),
-    ("a3",        "A3_no_promote_at_evict", ["-sd-disable-rsb=true", "-sd-disable-cbf=true",
-                                             "-sd-promote-at-evict=false"]),
+    ("a0",        "A0_no_promote_at_evict", ["-sd-promote-at-evict=false"]),
+    ("a3",        "A3_no_promote_at_evict", ["-sd-promote-at-evict=false",
+                                             "-sd-disable-rsb=true", "-sd-disable-cbf=true"]),
     ("a6_3banks", "A6_nbank/3banks",        ["-sd-num-banks=3", "-sd-log2-sub-entry=2"]),
     ("a6_7banks", "A6_nbank/7banks",        ["-sd-num-banks=7", "-sd-log2-sub-entry=2"]),
     ("a6_9banks", "A6_nbank/9banks",        ["-sd-num-banks=9", "-sd-log2-sub-entry=2"]),
@@ -875,7 +875,7 @@ for benchmark in ABLATION_BENCHMARKS:
             f.write("    -timing \\\n")
             f.write("    -unified-gpus=1,2,3,4 \\\n")
             f.write("    -inter-gpu-noc \\\n")
-            f.write("    -inter-gpu-noc-bw=300 \\\n")
+            f.write("    -inter-gpu-noc-bw=1800 \\\n")
             f.write("    -use-unified-memory \\\n")
             f.write("    -page-migration-policy=None \\\n")
             f.write("    -coherence-directory=SuperDirectory \\\n")
