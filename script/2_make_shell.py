@@ -181,7 +181,7 @@ bench_args_map = {
     'matrixmultiplication': "-x=2500 -y=2500 -z=2500",
     # 128.0 MB: 2 × 4000² × 4 (uint32)
     # 이전 -width=8192는 사실 ~537 MB로 코멘트(30.73 MB)와 불일치하던 버그.
-    'matrixtranspose': "-width=4000",
+    'matrixtranspose': "-width=8000",
     # 128.0 MB: 64 × 2,097,152 (4 unified-mem float4 버퍼)
     # groupSize=256 의 배수 (2097152 = 8192 × 256)
     'nbody': "-particles=2097152 -iter=4",
@@ -199,8 +199,8 @@ bench_args_map = {
     # 128.0 MB: 8 × 16,000,000
     'relu':    "-length=16000000",
     'xor':     "",
-    'lenet':   "-epoch=1 -max-batch-per-epoch=2 -batch-size=512",
-    'minerva': "-epoch=1 -max-batch-per-epoch=1 -batch-size=512",
+    'lenet':   "-epoch=1 -max-batch-per-epoch=1 -batch-size=3072",
+    'minerva': "-epoch=1 -max-batch-per-epoch=1 -batch-size=3072",
     'vgg16':   "-epoch=1 -max-batch-per-epoch=2 -batch-size=32",
 }
 
@@ -209,6 +209,32 @@ current_dir = os.getcwd()
 
 # 2. Results 폴더 경로 설정 (scripts와 같은 레벨의 results 폴더)
 results_base = os.path.abspath(os.path.join(current_dir, "..", "results"))
+
+# 메모리 latency path tracer(-mem-latency-trace) 자동 삽입 여부.
+# 측정은 timing-neutral(시뮬레이션 결과 불변)이므로 모든 run에 켜 두어도 안전하다.
+MEM_LATENCY_TRACE = True
+
+
+def write_mem_latency_flags(f, out_txt, pw_csv=""):
+    """모든 변종 run 스크립트에 mem-latency path tracer 플래그를 추가한다.
+    per-window 경로가 있으면 per_window 트리를 mem_path 로 미러링하고, 없으면
+    rawdata/text 트리를 rawdata/mem_path 로 미러링한다. add_mem_latency_flag.py
+    가 기존 스크립트에 적용한 규칙과 동일. (-report-all 직전에 호출.)"""
+    if not MEM_LATENCY_TRACE:
+        return
+    if pw_csv:
+        mp = pw_csv.replace(
+            os.sep + "per_window" + os.sep, os.sep + "mem_path" + os.sep)
+        if mp.endswith("_per_window.csv"):
+            mp = mp[:-len("_per_window.csv")] + "_mem_path.csv"
+    else:
+        mp = out_txt.replace(
+            os.path.join("rawdata", "text"), os.path.join("rawdata", "mem_path"))
+        if mp.endswith(".txt"):
+            mp = mp[:-4] + "_mem_path.csv"
+    os.makedirs(os.path.dirname(mp), exist_ok=True)
+    f.write("    -mem-latency-trace \\\n")
+    f.write(f"    -mem-latency-trace-output={mp} \\\n")
 
 # 마스터 스크립트 저장 폴더
 workload_master_dir  = os.path.join(current_dir, "workload")   # run_{benchmark}_all.sh
@@ -226,11 +252,25 @@ for benchmark in benchmarks:
     bench_args = bench_args_map.get(benchmark, "")
     # [CD8 FIX] CD_8 16KB cross-GPU writeback 데드락 fix(L2 invDirtyFlushReserve)는
     # -cd8-deadlock-fix 플래그로 제어되고 기본값은 OFF(원본 동작)다. 따라서 fix를
-    # 켜려면 명시적으로 =true 를 줘야 한다 — stencil2d 모든 config(SD/SD_FE/REC/HMG/CD)
-    # 에만 붙인다. (다른 워크로드는 플래그 미지정 → 기본 OFF → fix 없는 원본 baseline.)
+    # 켜려면 명시적으로 =true 를 줘야 한다 — stencil2d·matrixtranspose·minerva 모든 config
+    # (SD/SD_FE/REC/HMG/CD)에 붙인다. (다른 워크로드는 미지정 → 기본 OFF = 원본 baseline.)
     # Go flag는 위치 무관이라 bench_args 끝에 붙여도 정상 파싱됨.
-    if benchmark == "stencil2d":
+    if benchmark in ("stencil2d", "matrixtranspose", "minerva"):
         bench_args = (bench_args + " -cd8-deadlock-fix=true").strip()
+    # [SD PEER-SERVE-RESERVE] minerva(batch=3072)가 SuperDir 4-GPU capacity-cycle
+    # 데드락(9-bank a5_log2_1 데드락과 동일 근본원인)에 빠져, peer-serve origin이
+    # 공유 inflight 예산 위로 reserve(=maxInflightRequest/4)만큼 초과 admit 가능하게
+    # 하는 bounded-bump 게이트를 켠다. default OFF (SuperDir 외 config·타 워크로드 무영향).
+    if benchmark == "minerva":
+        bench_args = (bench_args + " -sd-peer-serve-reserve=true").strip()
+    # [L2-PEER-EVICT-HEADROOM] DNN (minerva, lenet) batch=3072 hits a 4-GPU symmetric peer-serve
+    # eviction-credit deadlock (maxRemoteInflEvictPeer=32 pins on all GPUs, acks stop, L2
+    # quiesces). Raise the peer-serve eviction caps so the ack-producing serve path always has
+    # headroom. minerva quiesces at window ~136; lenet deadlocks later at window ~5347 (the
+    # earlier "lenet fine to 3977" was simply before its deadlock point — 3977 < 5347).
+    # Default OFF == byte-identical.
+    if benchmark in ("minerva", "lenet"):
+        bench_args = (bench_args + " -l2-peer-evict-headroom=true").strip()
     sample_dir = os.path.abspath(os.path.join(current_dir, "..", "mgpusim", "amd", "samples", benchmark))
     all_benchmark_scripts[benchmark] = []
 
@@ -333,6 +373,7 @@ for benchmark in benchmarks:
             f.write(f"    -per-window-snapshot \\\n")
             f.write(f"    -window-instructions={PW_WINDOW_INST} \\\n")
             f.write(f"    -per-window-output={pw_csv} \\\n")
+        write_mem_latency_flags(f, out_txt, pw_csv)
         f.write("    -report-all \\\n")
         f.write(f"    {f'> {out_txt}' if SAVE_STDOUT else STDOUT_REDIRECT}\n\n")
         f.write("# 결과 파일(SQLite) 이동 및 이름 변경\n")
@@ -384,6 +425,7 @@ for benchmark in benchmarks:
             f.write(f"    -per-window-snapshot \\\n")
             f.write(f"    -window-instructions={PW_WINDOW_INST} \\\n")
             f.write(f"    -per-window-output={pw_csv} \\\n")
+        write_mem_latency_flags(f, out_txt, pw_csv)
         f.write("    -report-all \\\n")
         f.write(f"    {f'> {out_txt}' if SAVE_STDOUT else STDOUT_REDIRECT}\n\n")
         f.write("# 결과 파일(SQLite) 이동 및 이름 변경\n")
@@ -457,6 +499,7 @@ for benchmark in benchmarks:
                 f.write(f"    -per-window-snapshot \\\n")
                 f.write(f"    -window-instructions={PW_WINDOW_INST} \\\n")
                 f.write(f"    -per-window-output={pw_csv} \\\n")
+            write_mem_latency_flags(f, out_txt, pw_csv)
             f.write("    -report-all \\\n")
             f.write(f"    {f'> {out_txt}' if SAVE_STDOUT else STDOUT_REDIRECT}\n\n")
             f.write("# 결과 파일(SQLite) 이동 및 이름 변경\n")
@@ -535,6 +578,7 @@ for benchmark in benchmarks:
             f.write(f"    -per-window-snapshot \\\n")
             f.write(f"    -window-instructions={PW_WINDOW_INST} \\\n")
             f.write(f"    -per-window-output={pw_csv} \\\n")
+        write_mem_latency_flags(f, out_txt, pw_csv)
         f.write("    -report-all \\\n")
         f.write(f"    {f'> {out_txt}' if SAVE_STDOUT else STDOUT_REDIRECT}\n\n")
         f.write("# 결과 파일(SQLite) 이동 및 이름 변경\n")
@@ -625,6 +669,7 @@ for benchmark in benchmarks:
                 f.write(f"    -per-window-snapshot \\\n")
                 f.write(f"    -window-instructions={PW_WINDOW_INST} \\\n")
                 f.write(f"    -per-window-output={pw_csv} \\\n")
+            write_mem_latency_flags(f, out_txt, pw_csv)
             f.write("    -report-all \\\n")
             f.write(f"    {f'> {out_txt}' if SAVE_STDOUT else STDOUT_REDIRECT}\n\n")
             f.write("# 결과 파일(SQLite) 이동 및 이름 변경\n")
@@ -726,6 +771,7 @@ for benchmark in benchmarks:
         # CSV ends up in our coalescability tree.
         f.write(f"    -window-instructions={PW_WINDOW_INST} \\\n")
         f.write(f"    -per-window-output={out_pw_csv} \\\n")
+        write_mem_latency_flags(f, out_txt, out_pw_csv)
         f.write("    -report-all \\\n")
         f.write(f"    {f'> {out_txt}' if SAVE_STDOUT else STDOUT_REDIRECT}\n\n")
         f.write("# 결과 파일(SQLite) 이동 및 이름 변경\n")
@@ -743,7 +789,9 @@ for benchmark in benchmarks:
 
     with open(workload_master_sh_path, "w") as f:
         f.write("#!/bin/bash\n\n")
-        f.write("MAX_PARALLEL=4\n\n")
+        # DNN (lenet/minerva) are heavy single-threaded sims — run one variant at a
+        # time (MAX_PARALLEL=1) to avoid CPU contention; other workloads keep 4.
+        f.write(f"MAX_PARALLEL={1 if benchmark in DNN_BENCHMARKS else 4}\n\n")
         f.write("trap 'echo \"중단 중...\"; kill 0; exit 1' INT TERM\n\n")
         f.write("run_bg() {\n")
         f.write("    local config_name=$1\n")
@@ -833,11 +881,25 @@ for benchmark in ABLATION_BENCHMARKS:
     bench_args = bench_args_map.get(benchmark, "")
     # [CD8 FIX] CD_8 16KB cross-GPU writeback 데드락 fix(L2 invDirtyFlushReserve)는
     # -cd8-deadlock-fix 플래그로 제어되고 기본값은 OFF(원본 동작)다. 따라서 fix를
-    # 켜려면 명시적으로 =true 를 줘야 한다 — stencil2d 모든 config(SD/SD_FE/REC/HMG/CD)
-    # 에만 붙인다. (다른 워크로드는 플래그 미지정 → 기본 OFF → fix 없는 원본 baseline.)
+    # 켜려면 명시적으로 =true 를 줘야 한다 — stencil2d·matrixtranspose·minerva 모든 config
+    # (SD/SD_FE/REC/HMG/CD)에 붙인다. (다른 워크로드는 미지정 → 기본 OFF = 원본 baseline.)
     # Go flag는 위치 무관이라 bench_args 끝에 붙여도 정상 파싱됨.
-    if benchmark == "stencil2d":
+    if benchmark in ("stencil2d", "matrixtranspose", "minerva"):
         bench_args = (bench_args + " -cd8-deadlock-fix=true").strip()
+    # [SD PEER-SERVE-RESERVE] minerva(batch=3072)가 SuperDir 4-GPU capacity-cycle
+    # 데드락(9-bank a5_log2_1 데드락과 동일 근본원인)에 빠져, peer-serve origin이
+    # 공유 inflight 예산 위로 reserve(=maxInflightRequest/4)만큼 초과 admit 가능하게
+    # 하는 bounded-bump 게이트를 켠다. default OFF (SuperDir 외 config·타 워크로드 무영향).
+    if benchmark == "minerva":
+        bench_args = (bench_args + " -sd-peer-serve-reserve=true").strip()
+    # [L2-PEER-EVICT-HEADROOM] DNN (minerva, lenet) batch=3072 hits a 4-GPU symmetric peer-serve
+    # eviction-credit deadlock (maxRemoteInflEvictPeer=32 pins on all GPUs, acks stop, L2
+    # quiesces). Raise the peer-serve eviction caps so the ack-producing serve path always has
+    # headroom. minerva quiesces at window ~136; lenet deadlocks later at window ~5347 (the
+    # earlier "lenet fine to 3977" was simply before its deadlock point — 3977 < 5347).
+    # Default OFF == byte-identical.
+    if benchmark in ("minerva", "lenet"):
+        bench_args = (bench_args + " -l2-peer-evict-headroom=true").strip()
     sample_dir = os.path.abspath(os.path.join(current_dir, "..", "mgpusim", "amd", "samples", benchmark))
     abl_base_dir = os.path.join(sample_dir, "ablation")
     os.makedirs(abl_base_dir, exist_ok=True)
@@ -887,6 +949,7 @@ for benchmark in ABLATION_BENCHMARKS:
                 f.write(f"    -per-window-snapshot \\\n")
                 f.write(f"    -window-instructions={PW_WINDOW_INST} \\\n")
                 f.write(f"    -per-window-output={pw_csv} \\\n")
+            write_mem_latency_flags(f, out_txt, pw_csv)
             f.write("    -report-all \\\n")
             f.write(f"    {f'> {out_txt}' if SAVE_STDOUT else STDOUT_REDIRECT}\n\n")
             f.write("# 결과 파일(SQLite) 이동 및 이름 변경\n")
